@@ -1,0 +1,57 @@
+<?php
+
+
+/**
+* Implements hook_block_info().
+*/
+function pledge_block_info() {
+  $blocks = array();
+
+  $blocks['sign-pledge'] = array(
+    'info' => t('Sign the Pledge'),
+  );
+  $blocks['signin-pledge'] = array(
+    'info' => t('Pledge signin'),
+  );
+
+  return $blocks;
+}
+
+/**
+* Implements hook_block_view().
+*/
+function pledge_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'sign-pledge':
+      if (user_is_anonymous()) {  
+        $block['subject'] = 'Sign the Pledge';
+        $block['content'] = pledge_sign_pledge_block();
+      } else {
+        $block['subject'] = 'Thanks for signing.';
+        $block['content'] = pledge_signed_block();
+      }
+      break;
+    case 'signin-pledge':
+      $block['subject'] = '';
+      $block['content'] = pledge_signin_block();
+  }
+
+  return $block;
+}
+
+function pledge_sign_pledge_block() {
+  $form = drupal_get_form('user_register_form');
+  $form['actions']['submit']['#value'] = "Sign the Pledge!";
+  return drupal_render($form);
+}
+
+function pledge_signed_block() {
+  return 'Thanks!';
+}
+
+function pledge_signin_block() {
+  return '<a href="user">Already pledged? Sign in.</a>';
+}
+

@@ -1,0 +1,5 @@
+name = Pledge
+description = Turns the site into a pledge site.
+core = 7.x
+package = Pledge
+dependencies[] = panels, forum
