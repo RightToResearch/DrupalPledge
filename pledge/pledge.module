@@ -1,5 +1,56 @@
 <?php
 
+/**
+* Implements hook_views_api().
+*/
+function pledge_views_api() {
+  return array('api' => 3.0);
+}
+
+/**
+* Implements hook_views_default_views().
+*/
+function pledge_views_default_views() {
+  module_load_include('inc', 'pledge', 'views');
+  $views = array();
+  $views['signatories'] = pledge_views_signatories();
+  return $views; 
+}
+
+/**
+* Implements hook_ctools_plugin_api().
+*/
+function pledge_ctools_plugin_api($module, $api) {
+  if ($module == 'page_manager' && $api == 'pages_default') {
+    return array('version' => 1);
+  }
+}
+
+/**
+* Implements hook_default_page_manager_pages().
+*/
+function pledge_default_page_manager_pages() {
+  module_load_include('inc', 'pledge', 'pages');
+  $pages = array();
+  $pages['home'] = pledge_pages_home();
+  return $pages;
+}
+
+/**
+* Implements hook_menu().
+*/
+function pledge_menu() {
+  $items = array();
+  $items['admin/config/content/pledge'] = array(
+    'title' => 'Pledge Settings',
+    'description' => 'Change the pledge text and other pledge settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('pledge_admin'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
 
 /**
 * Implements hook_block_info().
@@ -13,6 +64,9 @@ function pledge_block_info() {
   $blocks['signin-pledge'] = array(
     'info' => t('Pledge signin'),
   );
+  $blocks['text-pledge'] = array(
+    'info' => t('Text of the pledge'),
+  );
 
   return $blocks;
 }
@@ -21,8 +75,8 @@ function pledge_block_info() {
 * Implements hook_block_view().
 */
 function pledge_block_view($delta = '') {
+  module_load_include('inc', 'pledge', 'blocks');
   $block = array();
-
   switch ($delta) {
     case 'sign-pledge':
       if (user_is_anonymous()) {  
@@ -40,22 +94,18 @@ function pledge_block_view($delta = '') {
         $block['content'] = pledge_signin_block();
       }
       break;
+    case 'text-pledge':
+      $block['subject'] = '';
+      $block['content'] = pledge_text_pledge_block();
+      break;
   }
-
   return $block;
 }
 
-function pledge_sign_pledge_block() {
-  $form = drupal_get_form('user_register_form');
-  $form['actions']['submit']['#value'] = "Sign the Pledge!";
-  return drupal_render($form);
-}
 
-function pledge_signed_block() {
-  return 'Thanks!';
-}
 
-function pledge_signin_block() {
-  return '<a href="user">Already pledged? Sign in.</a>';
-}
+function pledge_admin($form, &$form_state) {
+  module_load_include('inc', 'pledge', 'forms');
+  return system_settings_form(pledge_admin_form($form, $form_sate));
 
+}

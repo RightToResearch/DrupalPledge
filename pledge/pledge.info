@@ -3,3 +3,6 @@ description = Turns the site into a pledge site.
 core = 7.x
 package = Pledge
 dependencies[] = panels
+dependencies[] = views
+dependencies[] = page_manager
+configure = admin/config/content/pledge

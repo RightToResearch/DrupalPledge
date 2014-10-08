@@ -1,0 +1,70 @@
+<?php
+
+function pledge_install() {
+  //Make some tweaks
+  variable_set('site_frontpage', 'home');
+  //Throw in some default text
+  variable_set('pledge_pledgetext', 'Visit the Pledge settings page to change your pledge text.');
+  variable_set('pledge_signed', 'Thanks for signing!');
+  pledge_install_user_fields();
+
+  $menu_block = array(
+    'module' => 'pledge',
+    'delta' => 'signin-pledge', // the id of the block
+    'theme' => 'bartik', // the current theme
+    'visibility' => 0, // it is displayed only on those pages listed in $block->pages.
+    'region' => 'header',
+    'status' => 1,
+    'pages' => '', // display the menu only for these pages
+    );
+
+  drupal_write_record('block', $menu_block);
+}
+
+/**
+function pledge_enable() {
+  pledge_install_shift_blocks();
+}
+
+function pledge_install_shift_blocks() {
+  //Place signin-pledge block during module install
+  db_update('block')
+    ->fields(array(
+      'status' => 1,
+      'region' => 'header',
+      'visibility' => 0,
+    ))
+    ->condition('module', 'pledge')
+    ->condition('delta', 'signin-pledge')
+    ->condition('theme', 'bartik')
+    ->execute();
+
+}
+*/
+
+function pledge_install_user_fields() {
+  module_load_include('inc', 'pledge', 'user_fields');
+  $fields = pledge_user_fields();
+  foreach ($fields as $field) {
+    if (!field_info_field($field['field_name'])) {
+      $new = array(
+        'field_name' => $field['field_name'],
+        'type' => $field['type'],
+        'settings' => $field['settings']
+      );
+    field_create_field($new);
+    $instance = array(
+        'field_name' => $field['field_name'],
+        'entity_type' => 'user',
+        'label' => $field['label'],
+        'bundle' => 'user',
+        'required' => $field['settings']['required'],
+        'widget' => $field['widget'],
+        'settings' => array(
+          'user_register_form' => $field['settings']['user_register_form'],
+        ),
+    );
+    field_create_instance($instance);
+    }
+  }
+}
