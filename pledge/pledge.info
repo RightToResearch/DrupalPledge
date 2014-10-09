@@ -7,4 +7,7 @@ dependencies[] = views
 dependencies[] = page_manager
 dependencies[] = forum
 dependencies[] = countries
+dependencies[] = countryicons
+dependencies[] = countryicons_shiny
+dependencies[] = gravatar
 configure = admin/config/content/pledge

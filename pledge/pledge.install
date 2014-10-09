@@ -30,6 +30,13 @@ function pledge_install() {
     'status' => 1,
     'pages' => '',
     );
+
+  //Enable user pictures so Gravatar integration works out of the box
+  variable_set('user_pictures', 1);
+
+  //Allow visitors to register their own accounts
+  variable_set('user_register', 1);
+
   drupal_write_record('block', $block);
 }
 
