@@ -1,3 +1,17 @@
+/**
+ * pledge: autocomplete.css
+ * ========================
+ *
+ * The standard Drupal autocomplete.js assumes that an immediate parent of a field with
+ * autocomplete enabled has a relative position. If no such parent exists then the
+ * position of the autocomplete results will be incorrect. This file changes the position
+ * attribute of field wrappers to ensure an appropriate relatively positioned element exists.
+ */
+
 div#field-institution-add-more-wrapper {
+  position:relative;
+}
+
+div#field-discipline-add-more-wrapper {
   position:relative;
 }
