@@ -10,7 +10,16 @@ function pledge_text_pledge_block() {
 }
 
 function pledge_sign_pledge_block() {
+  //Autocomplete box appears in wrong place if no relative positioned elements immediately above textfield
+  drupal_add_css(drupal_get_path('module', 'pledge') . '/css/autocomplete.css');
+  //We need to modify the user registration form
   $form = drupal_get_form('user_register_form');
+  //Add autocompletes
+  $lang = $form['field_institution']['#language'];
+  $form['field_institution'][$lang][0]['value']['#autocomplete_path'] = 'pledge/autocomplete/institution';
+  $lang = $form['field_discipline']['#language'];
+  $form['field_discipline'][$lang][0]['value']['#autocomplete_path'] = 'pledge/autocomplete/discipline';
+  //Modify submit button text
   $form['actions']['submit']['#value'] = "Sign the Pledge!";
   return drupal_render($form);
 }

@@ -1,5 +1,7 @@
 <?php
 
+module_load_include('inc', 'pledge', 'autocomplete');
+
 /**
 * Implements hook_views_api().
 */
@@ -48,6 +50,20 @@ function pledge_menu() {
     'page arguments' => array('pledge_admin'),
     'access arguments' => array('access administration pages'),
     'type' => MENU_NORMAL_ITEM,
+  );
+  $items['pledge/autocomplete/institution'] = array(
+    'title' => t('Autocomplete institution'),
+    'page callback' => 'pledge_autocomplete_institution',
+    'page arguments' => array(3),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['pledge/autocomplete/discipline'] = array(
+    'title' => t('Autocomplete discipline'),
+    'page callback' => 'pledge_autocomplete_discipline',
+    'page arguments' => array(3),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
   );
   return $items;
 }
@@ -102,10 +118,7 @@ function pledge_block_view($delta = '') {
   return $block;
 }
 
-
-
 function pledge_admin($form, &$form_state) {
   module_load_include('inc', 'pledge', 'forms');
   return system_settings_form(pledge_admin_form($form, $form_sate));
-
 }
