@@ -25,6 +25,8 @@ function pledge_sign_pledge_block() {
 }
 
 function pledge_signed_block() {
+  //print "<PRE>";
+  //print_r(field_info_instance('user', 'field_country', 'user'));exit;
   return variable_get('pledge_signed', 'Thanks for signing!');
 }
 

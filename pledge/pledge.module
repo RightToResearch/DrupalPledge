@@ -68,6 +68,15 @@ function pledge_menu() {
   return $items;
 }
 
+function pledge_menu_alter(&$items) {
+  $items['forum']['menu_name'] = 'main-menu';
+  $items['forum']['weight'] = 0;
+}
+
+function pledge_forum_title() {
+  return variable_get('pledge_forumname', 'Discussion forums');
+}
+
 /**
 * Implements hook_block_info().
 */

@@ -5,4 +5,6 @@ package = Pledge
 dependencies[] = panels
 dependencies[] = views
 dependencies[] = page_manager
+dependencies[] = forum
+dependencies[] = countries
 configure = admin/config/content/pledge
