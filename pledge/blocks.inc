@@ -2,7 +2,8 @@
 
 function pledge_text_pledge_block() {
   $output = '';
-  $output .= views_embed_view('signatories', 'block_1');
+  $output .= views_embed_view('signatories', 'sig_count');
+  $output .= views_embed_view('signatories', 'geo_count');
   $output .= '<p>';
   $output .= variable_get('pledge_pledgetext', 'Visit the Pledge settings page to change your pledge text.');
   $output .= '</p>';

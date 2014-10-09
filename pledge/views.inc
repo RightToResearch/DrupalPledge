@@ -43,6 +43,15 @@ $handler->display->display_options['fields']['field_institution']['field'] = 'fi
 $handler->display->display_options['fields']['field_discipline']['id'] = 'field_discipline';
 $handler->display->display_options['fields']['field_discipline']['table'] = 'field_data_field_discipline';
 $handler->display->display_options['fields']['field_discipline']['field'] = 'field_discipline';
+/* Field: User: Country */
+$handler->display->display_options['fields']['field_country']['id'] = 'field_country';
+$handler->display->display_options['fields']['field_country']['table'] = 'field_data_field_country';
+$handler->display->display_options['fields']['field_country']['field'] = 'field_country';
+$handler->display->display_options['fields']['field_country']['type'] = 'country_icon';
+$handler->display->display_options['fields']['field_country']['settings'] = array(
+  'countryiconset' => 'icon_shiny',
+  'property' => 'name',
+);
 /* Sort criterion: User: Family Name (field_family_name) */
 $handler->display->display_options['sorts']['field_family_name_value']['id'] = 'field_family_name_value';
 $handler->display->display_options['sorts']['field_family_name_value']['table'] = 'field_data_field_family_name';
@@ -131,6 +140,20 @@ $handler->display->display_options['filters']['field_discipline_value']['expose'
   2 => '2',
   1 => 0,
 );
+/* Filter criterion: User: Country (field_country) */
+$handler->display->display_options['filters']['field_country_iso2']['id'] = 'field_country_iso2';
+$handler->display->display_options['filters']['field_country_iso2']['table'] = 'field_data_field_country';
+$handler->display->display_options['filters']['field_country_iso2']['field'] = 'field_country_iso2';
+$handler->display->display_options['filters']['field_country_iso2']['operator'] = 'contains';
+$handler->display->display_options['filters']['field_country_iso2']['exposed'] = TRUE;
+$handler->display->display_options['filters']['field_country_iso2']['expose']['operator_id'] = 'field_country_iso2_op';
+$handler->display->display_options['filters']['field_country_iso2']['expose']['label'] = 'Country';
+$handler->display->display_options['filters']['field_country_iso2']['expose']['operator'] = 'field_country_iso2_op';
+$handler->display->display_options['filters']['field_country_iso2']['expose']['identifier'] = 'field_country_iso2';
+$handler->display->display_options['filters']['field_country_iso2']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => 0,
+);
 $handler->display->display_options['path'] = 'signatories';
 $handler->display->display_options['menu']['type'] = 'normal';
 $handler->display->display_options['menu']['title'] = 'Signatories';
@@ -150,7 +173,7 @@ $handler->display->display_options['sorts']['created']['table'] = 'users';
 $handler->display->display_options['sorts']['created']['field'] = 'created';
 
 /* Display: SigCountBlock */
-$handler = $view->new_display('block', 'SigCountBlock', 'block_1');
+$handler = $view->new_display('block', 'SigCountBlock', 'sig_count');
 $handler->display->display_options['defaults']['group_by'] = FALSE;
 $handler->display->display_options['group_by'] = TRUE;
 $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -169,6 +192,29 @@ $handler->display->display_options['fields']['uid']['label'] = '';
 $handler->display->display_options['fields']['uid']['alter']['alter_text'] = TRUE;
 $handler->display->display_options['fields']['uid']['alter']['text'] = '<h2>[uid] people have signed.</h2>';
 $handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+
+/* Display: GeoCountBlock */
+$handler = $view->new_display('block', 'GeoCountBlock', 'geo_count');
+$handler->display->display_options['defaults']['group_by'] = FALSE;
+$handler->display->display_options['group_by'] = TRUE;
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['row_plugin'] = 'fields';
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: User: Country */
+$handler->display->display_options['fields']['field_country']['id'] = 'field_country';
+$handler->display->display_options['fields']['field_country']['table'] = 'field_data_field_country';
+$handler->display->display_options['fields']['field_country']['field'] = 'field_country';
+$handler->display->display_options['fields']['field_country']['group_type'] = 'count_distinct';
+$handler->display->display_options['fields']['field_country']['label'] = '';
+$handler->display->display_options['fields']['field_country']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_country']['alter']['text'] = '<h2>[field_country] countries.</h2>';
+$handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_country']['separator'] = ', ';
 $handler->display->display_options['defaults']['sorts'] = FALSE;
 
 return $view;
