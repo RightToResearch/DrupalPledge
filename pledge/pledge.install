@@ -20,6 +20,11 @@ function pledge_install() {
   //Add fields to the user bundle
   pledge_install_user_fields();
 
+  //Create the Mentor role
+  $role = new stdClass();
+  $role->name = 'Mentor';
+  user_role_save($role);
+
   //Place the sign in block in the header region
   $block = array(
     'module' => 'pledge',
@@ -68,4 +73,11 @@ function pledge_install_user_fields() {
     field_create_instance($instance);
     }
   }
+}
+
+function pledge_update_7700() {
+  //Create the Mentor role
+  $role = new stdClass();
+  $role->name = 'Mentor';
+  user_role_save($role);
 }
