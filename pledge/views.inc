@@ -35,6 +35,14 @@ $handler->display->display_options['fields']['field_family_name']['field'] = 'fi
 $handler->display->display_options['fields']['field_family_name']['label'] = 'Name';
 $handler->display->display_options['fields']['field_family_name']['alter']['alter_text'] = TRUE;
 $handler->display->display_options['fields']['field_family_name']['alter']['text'] = '[field_family_name], [field_given_name]';
+/* Field: User: Institution */
+$handler->display->display_options['fields']['field_institution']['id'] = 'field_institution';
+$handler->display->display_options['fields']['field_institution']['table'] = 'field_data_field_institution';
+$handler->display->display_options['fields']['field_institution']['field'] = 'field_institution';
+/* Field: User: Discipline */
+$handler->display->display_options['fields']['field_discipline']['id'] = 'field_discipline';
+$handler->display->display_options['fields']['field_discipline']['table'] = 'field_data_field_discipline';
+$handler->display->display_options['fields']['field_discipline']['field'] = 'field_discipline';
 /* Sort criterion: User: Family Name (field_family_name) */
 $handler->display->display_options['sorts']['field_family_name_value']['id'] = 'field_family_name_value';
 $handler->display->display_options['sorts']['field_family_name_value']['table'] = 'field_data_field_family_name';
@@ -78,6 +86,51 @@ $handler->display->display_options['sorts']['created']['table'] = 'users';
 $handler->display->display_options['sorts']['created']['field'] = 'created';
 $handler->display->display_options['sorts']['created']['exposed'] = TRUE;
 $handler->display->display_options['sorts']['created']['expose']['label'] = 'Date Signed';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: User: Active */
+$handler->display->display_options['filters']['status']['id'] = 'status';
+$handler->display->display_options['filters']['status']['table'] = 'users';
+$handler->display->display_options['filters']['status']['field'] = 'status';
+$handler->display->display_options['filters']['status']['value'] = '1';
+$handler->display->display_options['filters']['status']['group'] = 1;
+$handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+/* Filter criterion: User: Institution (field_institution) */
+$handler->display->display_options['filters']['field_institution_value']['id'] = 'field_institution_value';
+$handler->display->display_options['filters']['field_institution_value']['table'] = 'field_data_field_institution';
+$handler->display->display_options['filters']['field_institution_value']['field'] = 'field_institution_value';
+$handler->display->display_options['filters']['field_institution_value']['operator'] = 'contains';
+$handler->display->display_options['filters']['field_institution_value']['exposed'] = TRUE;
+$handler->display->display_options['filters']['field_institution_value']['expose']['operator_id'] = 'field_institution_value_op';
+$handler->display->display_options['filters']['field_institution_value']['expose']['label'] = 'Institution';
+$handler->display->display_options['filters']['field_institution_value']['expose']['operator'] = 'field_institution_value_op';
+$handler->display->display_options['filters']['field_institution_value']['expose']['identifier'] = 'field_institution_value';
+$handler->display->display_options['filters']['field_institution_value']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => 0,
+);
+$handler->display->display_options['filters']['field_institution_value']['group_info']['label'] = 'Institution (field_institution)';
+$handler->display->display_options['filters']['field_institution_value']['group_info']['identifier'] = 'field_institution_value';
+$handler->display->display_options['filters']['field_institution_value']['group_info']['remember'] = FALSE;
+$handler->display->display_options['filters']['field_institution_value']['group_info']['group_items'] = array(
+  1 => array(),
+  2 => array(),
+  3 => array(),
+);
+/* Filter criterion: User: Discipline (field_discipline) */
+$handler->display->display_options['filters']['field_discipline_value']['id'] = 'field_discipline_value';
+$handler->display->display_options['filters']['field_discipline_value']['table'] = 'field_data_field_discipline';
+$handler->display->display_options['filters']['field_discipline_value']['field'] = 'field_discipline_value';
+$handler->display->display_options['filters']['field_discipline_value']['operator'] = 'contains';
+$handler->display->display_options['filters']['field_discipline_value']['exposed'] = TRUE;
+$handler->display->display_options['filters']['field_discipline_value']['expose']['operator_id'] = 'field_discipline_value_op';
+$handler->display->display_options['filters']['field_discipline_value']['expose']['label'] = 'Discipline';
+$handler->display->display_options['filters']['field_discipline_value']['expose']['operator'] = 'field_discipline_value_op';
+$handler->display->display_options['filters']['field_discipline_value']['expose']['identifier'] = 'field_discipline_value';
+$handler->display->display_options['filters']['field_discipline_value']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => 0,
+);
 $handler->display->display_options['path'] = 'signatories';
 $handler->display->display_options['menu']['type'] = 'normal';
 $handler->display->display_options['menu']['title'] = 'Signatories';
@@ -117,7 +170,6 @@ $handler->display->display_options['fields']['uid']['alter']['alter_text'] = TRU
 $handler->display->display_options['fields']['uid']['alter']['text'] = '<h2>[uid] people have signed.</h2>';
 $handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
 $handler->display->display_options['defaults']['sorts'] = FALSE;
-
 
 return $view;
 }
