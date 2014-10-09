@@ -1,8 +1,16 @@
 <?php
+/**
+ * pledge: blocks.inc
+ * ==================
+ *
+ * Implementation of blocks defined in pledge.module.
+ */
 
+/**
+ * The main text of the pledge, number of signatories, and number of countries
+ */
 function pledge_text_pledge_block() {
-  $output = '';
-  $output .= views_embed_view('signatories', 'sig_count');
+  $output  = views_embed_view('signatories', 'sig_count');
   $output .= views_embed_view('signatories', 'geo_count');
   $output .= '<p>';
   $output .= variable_get('pledge_pledgetext', 'Visit the Pledge settings page to change your pledge text.');
@@ -10,6 +18,9 @@ function pledge_text_pledge_block() {
   return $output;
 }
 
+/**
+ * For anonymous users to sign the pledge (modified user_register_form)
+ */
 function pledge_sign_pledge_block() {
   //Autocomplete box appears in wrong place if no relative positioned elements immediately above textfield
   drupal_add_css(drupal_get_path('module', 'pledge') . '/css/autocomplete.css');
@@ -25,12 +36,17 @@ function pledge_sign_pledge_block() {
   return drupal_render($form);
 }
 
+/**
+ * For authenticated users thank them for signing the pledge and suggets what to do next (TODO)
+ */
 function pledge_signed_block() {
-  //print "<PRE>";
-  //print_r(field_info_instance('user', 'field_country', 'user'));exit;
   return variable_get('pledge_signed', 'Thanks for signing!');
 }
 
+
+/**
+ * As we hide the login block on <front> add a link in the header region
+ */
 function pledge_signin_block() {
   return '<a href="user">Already pledged? Sign in.</a>';
 }

@@ -1,5 +1,14 @@
 <?php
+/**
+ * pledge: user_fields.inc
+ * =======================
+ *
+ * Definitions of fields added to the user bundle.
+ */
 
+/**
+ * Build an array of field definitions (this is called from pledge_install)
+ */
 function pledge_user_fields() {
   $fields = array();
   $fields[] = pledge_user_fields_family_name();
@@ -9,6 +18,9 @@ function pledge_user_fields() {
   $fields[] = pledge_user_fields_country();
   return $fields;
 }
+
+/////////////////////////////////////////////////
+// Field definitions below, one per function
 
 function pledge_user_fields_family_name() {
   $field = array(

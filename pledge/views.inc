@@ -1,5 +1,14 @@
 <?php
+/**
+ * pledge: views.inc
+ * ==================
+ *
+ * Definition of standard pledge views.
+ */
 
+/**
+ * The signatories view provides all list of signatories, and counts of signatories
+ */
 function pledge_views_signatories() {
 $view = new view();
 $view->name = 'signatories';

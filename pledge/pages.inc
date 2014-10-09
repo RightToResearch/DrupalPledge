@@ -1,4 +1,14 @@
 <?php
+/**
+ * pledge: pages.inc
+ * ==================
+ *
+ * Implementation of pages using the panels module.
+ */
+
+/**
+ * The <front> page
+ */
 function pledge_pages_home() {
 $page = new stdClass();
 $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */

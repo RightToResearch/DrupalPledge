@@ -1,27 +1,41 @@
 <?php
+/**
+ * pledge: pledge.install
+ * ======================
+ *
+ * Handles installation and updates to the pledge module.
+ */
 
+/**
+ * Implements hook_install()
+ */
 function pledge_install() {
-  //Make some tweaks
+  //Set the <front> page to be our panels page
   variable_set('site_frontpage', 'home');
+
   //Throw in some default text
   variable_set('pledge_pledgetext', 'Visit the Pledge settings page to change your pledge text.');
   variable_set('pledge_signed', 'Thanks for signing!');
+
+  //Add fields to the user bundle
   pledge_install_user_fields();
 
-  $menu_block = array(
+  //Place the sign in block in the header region
+  $block = array(
     'module' => 'pledge',
-    'delta' => 'signin-pledge', // the id of the block
-    'theme' => 'bartik', // the current theme
-    'visibility' => 0, // it is displayed only on those pages listed in $block->pages.
+    'delta' => 'signin-pledge',
+    'theme' => 'bartik',
+    'visibility' => 0,
     'region' => 'header',
     'status' => 1,
-    'pages' => '', // display the menu only for these pages
+    'pages' => '',
     );
-
-  drupal_write_record('block', $menu_block);
+  drupal_write_record('block', $block);
 }
 
-
+/**
+ * Function to add fields (defined in user_fields.inc) to the user bundle
+ */
 function pledge_install_user_fields() {
   module_load_include('inc', 'pledge', 'user_fields');
   $fields = pledge_user_fields();

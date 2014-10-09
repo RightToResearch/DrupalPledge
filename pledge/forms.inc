@@ -1,5 +1,14 @@
 <?php
+/**
+ * pledge: forms.inc
+ * ==================
+ *
+ * Implementation of custom forms for the pledge module, mostly related to module administration.
+ */
 
+/**
+ * The main module administration form. Allows for various text areas used by the module to be set.
+ */
 function pledge_admin_form($form, &$form_state) {
   $form = array();
   $form['pledge_pledgetext'] = array(

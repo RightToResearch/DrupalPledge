@@ -1,5 +1,12 @@
 <?php
+/**
+ * pledge: pledge.module
+ * =====================
+ *
+ * Customises a Drupal site (assumes minimal profile) to be a pledge site.
+ */
 
+//We need to ensure some includes are made every time
 module_load_include('inc', 'pledge', 'autocomplete');
 
 /**
@@ -68,13 +75,13 @@ function pledge_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_menu_alter().
+ */
 function pledge_menu_alter(&$items) {
+  //Add the forum link to the main menu
   $items['forum']['menu_name'] = 'main-menu';
   $items['forum']['weight'] = 0;
-}
-
-function pledge_forum_title() {
-  return variable_get('pledge_forumname', 'Discussion forums');
 }
 
 /**
@@ -126,6 +133,9 @@ function pledge_block_view($delta = '') {
   }
   return $block;
 }
+
+/////////////////////////////////////////////////////////////////////
+// These functions ensure some includes are only made when neccessary
 
 function pledge_admin($form, &$form_state) {
   module_load_include('inc', 'pledge', 'forms');
