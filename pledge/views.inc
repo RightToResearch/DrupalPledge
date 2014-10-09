@@ -61,6 +61,10 @@ $handler->display->display_options['fields']['field_country']['settings'] = arra
   'countryiconset' => 'icon_shiny',
   'property' => 'name',
 );
+/* Field: User: Picture */
+$handler->display->display_options['fields']['picture']['id'] = 'picture';
+$handler->display->display_options['fields']['picture']['table'] = 'users';
+$handler->display->display_options['fields']['picture']['field'] = 'picture';
 /* Sort criterion: User: Family Name (field_family_name) */
 $handler->display->display_options['sorts']['field_family_name_value']['id'] = 'field_family_name_value';
 $handler->display->display_options['sorts']['field_family_name_value']['table'] = 'field_data_field_family_name';
@@ -225,6 +229,7 @@ $handler->display->display_options['fields']['field_country']['alter']['text'] =
 $handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
 $handler->display->display_options['fields']['field_country']['separator'] = ', ';
 $handler->display->display_options['defaults']['sorts'] = FALSE;
+
 
 return $view;
 }
