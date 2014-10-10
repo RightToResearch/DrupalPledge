@@ -2,6 +2,7 @@ name = Pledge
 description = Turns the site into a pledge site.
 core = 7.x
 package = Pledge
+
 dependencies[] = panels
 dependencies[] = views
 dependencies[] = page_manager
@@ -12,6 +13,7 @@ dependencies[] = countryicons_shiny
 dependencies[] = gravatar
 dependencies[] = context
 
+;These dependencies are to facilitate easy testing, not needed on production site
 dependencies[] = views_ui
 dependencies[] = context_ui
 dependencies[] = field_ui
