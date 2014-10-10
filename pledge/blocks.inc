@@ -40,7 +40,7 @@ function pledge_sign_pledge_block() {
  * For authenticated users thank them for signing the pledge and suggets what to do next (TODO)
  */
 function pledge_signed_block() {
- // print "<PRE>";print_r(field_info_instance('user', 'field_length', 'user'));exit;
+  module_load_include('install', 'pledge'); pledge_install_permissions(); drupal_set_message('changed', 'info');
   return variable_get('pledge_signed', 'Thanks for signing!');
 }
 
@@ -49,5 +49,5 @@ function pledge_signed_block() {
  * As we hide the login block on <front> add a link in the header region
  */
 function pledge_signin_block() {
-  return '<a href="user">Already pledged? Sign in.</a>';
+  return l('Already pledged? Sign in.', 'user');
 }
