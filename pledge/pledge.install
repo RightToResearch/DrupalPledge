@@ -143,12 +143,22 @@ function pledge_install_filters() {
 }
 
 function pledge_install_permissions() {
-  //Set roles for Content Manager
-  $cm_roles = array(
-    'use text format full_html',
+ $roles = array(
+    'Content Manager' => array(
+      'use text format full_html',
+    ),
+    'authenticated user' => array(
+      'access user profiles',
+    ),
+    'anonymous user' => array(
+      'access user profiles',
+    ),
   );
-  $cm = user_role_load_by_name('Content Manager');
-  user_role_grant_permissions($cm->rid, $cm_roles);
+
+  foreach ($roles as $role => $perms) {
+    $role = user_role_load_by_name($role);
+    user_role_grant_permissions($role->rid, $perms);
+  }
 }
 
 function pledge_install_user_fields_display() {
