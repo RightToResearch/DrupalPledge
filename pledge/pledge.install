@@ -47,14 +47,13 @@ function pledge_install() {
     'status' => 1,
     'pages' => '',
     );
+  drupal_write_record('block', $block);
 
   //Enable user pictures so Gravatar integration works out of the box
   variable_set('user_pictures', 1);
 
   //Allow visitors to register their own accounts
   variable_set('user_register', 1);
-
-  drupal_write_record('block', $block);
 }
 
 /**
@@ -87,7 +86,11 @@ function pledge_install_user_fields() {
   }
 }
 
+/**
+ * Create custom content (node) types
+ */
 function pledge_install_node_types() {
+  //Support articles
   $type = array(
     'type' => 'support_page',
     'name' => 'Support Page',
@@ -104,6 +107,9 @@ function pledge_install_node_types() {
   node_add_body_field($type);
 }
 
+/** 
+ * Create new user roles
+ */
 function pledge_install_roles() {
   //Create the Mentor role
   $role = new stdClass();
@@ -116,6 +122,9 @@ function pledge_install_roles() {
   user_role_save($role);
 }
 
+/**
+ * Define a Full HTML filter to allow people (Content Managers) to enter HTML
+ */
 function pledge_install_filters() {
   //Check if Full HTML filter already exists
   $format_exists = (bool) db_query_range('SELECT 1 FROM {filter_format} WHERE name = :name', 0, 1, array(':name' => 'Full HTML'))->fetchField();
@@ -125,8 +134,6 @@ function pledge_install_filters() {
       'name' => 'Full HTML',
       'weight' => 9,
       'filters' => array(
-        
-        // Enable the PHP evaluator filter.
         'filter_htmlcorrector' => array(
           'weight' => 0,
           'status' => 1,
@@ -142,8 +149,11 @@ function pledge_install_filters() {
   }
 }
 
+/**
+ *  Assign the default pledge permissions
+ */
 function pledge_install_permissions() {
- $roles = array(
+  $roles = array(
     'Content Manager' => array(
       'use text format full_html',
     ),
@@ -161,16 +171,17 @@ function pledge_install_permissions() {
   }
 }
 
+/**
+ * We build a custom user page using Views and Contexts - so hide the defaults
+ */
 function pledge_install_user_fields_display() {
-  //Build a liist of fields
+  //Build a liist of fields of hide
   module_load_include('inc', 'pledge', 'user_fields');
   $fields   = array_keys(pledge_user_fields());
+
   foreach ($fields as $field_name) {
-    // Fetch an instance info array.
     $instance_info = field_info_instance('user', $field_name, 'user');
-    // Change a single property in the instance definition.
-    $instance_info['display']['default']['type'] = 'hidden';
-    // Write the changed definition back.
+    $instance_info['display']['default']['type'] = 'hidden'; //hide the field
     field_update_instance($instance_info);
   }
 }
