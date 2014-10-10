@@ -40,6 +40,7 @@ function pledge_sign_pledge_block() {
  * For authenticated users thank them for signing the pledge and suggets what to do next (TODO)
  */
 function pledge_signed_block() {
+ // print "<PRE>";print_r(field_info_instance('user', 'field_length', 'user'));exit;
   return variable_get('pledge_signed', 'Thanks for signing!');
 }
 

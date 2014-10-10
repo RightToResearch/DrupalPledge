@@ -29,5 +29,14 @@ function pledge_admin_form($form, &$form_state) {
     '#description' => t('Text to display when user has already signed the pledge'),
     '#required' => TRUE,
   );
+  $form['pledge_supporttitle'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Support Page Title'),
+    '#default_value' => variable_get('pledge_supporttitle', 'We\'re here to help...'),
+    '#size' => 100,
+    '#maxlength' => 100,
+    '#description' => t('Title of the support page'),
+    '#required' => TRUE,
+  );
   return $form;
 }

@@ -10,12 +10,23 @@
  * Build an array of field definitions (this is called from pledge_install)
  */
 function pledge_user_fields() {
+  $fields   = pledge_mentor_fields();
+  $fields['field_family_name'] = pledge_user_fields_family_name();
+  $fields['field_given_name'] = pledge_user_fields_given_names();
+  $fields['field_institution'] = pledge_user_fields_institution();
+  $fields['field_discipline'] = pledge_user_fields_discipline();
+  $fields['field_country'] = pledge_user_fields_country();
+  return $fields;
+}
+
+//Access to these fields is controlled by pledge_field_access().
+function pledge_mentor_fields() {
   $fields = array();
-  $fields[] = pledge_user_fields_family_name();
-  $fields[] = pledge_user_fields_given_names();
-  $fields[] = pledge_user_fields_institution();
-  $fields[] = pledge_user_fields_discipline();
-  $fields[] = pledge_user_fields_country();
+  $fields['field_about_me'] = pledge_mentor_fields_about_me();
+  $fields['field_about_my_research'] = pledge_mentor_fields_about_my_research();
+  $fields['field_favourites'] = pledge_mentor_fields_favourites();
+  $fields['field_tips_area'] = pledge_mentor_fields_tips_area();
+  $fields['field_tips_institute'] = pledge_mentor_fields_tips_institute();
   return $fields;
 }
 
@@ -112,6 +123,116 @@ function pledge_user_fields_country() {
       'weight' => 0,
       'module' => 'countries',
       'active' => 1,
+    ),
+  );
+  return $field;
+}
+
+function pledge_mentor_fields_about_me() {
+  $field = array(
+    'field_name' => 'field_about_me',
+    'type' => 'text_long',
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => 0,
+    ),
+    'label' => 'About Me',
+    'widget' => array(
+      'type' => 'text_textarea',
+      'weight' => 0,
+      'module' => 'text',
+      'active' => 1,
+      'settings' => array(
+        'rows' => 5,
+      ),
+    ),
+  );
+  return $field;
+}
+
+function pledge_mentor_fields_about_my_research() {
+  $field = array(
+    'field_name' => 'field_about_my_research',
+    'type' => 'text_long',
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => 0,
+    ),
+    'label' => 'About My Research',
+    'widget' => array(
+      'type' => 'text_textarea',
+      'weight' => 0,
+      'module' => 'text',
+      'active' => 1,
+      'settings' => array(
+        'rows' => 5,
+      ),
+    ),
+  );
+  return $field;
+}
+
+function pledge_mentor_fields_favourites() {
+  $field = array(
+    'field_name' => 'field_favourites',
+    'type' => 'text_long',
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => 0,
+    ),
+    'label' => 'My favourite OA journal(s) / repositories',
+    'widget' => array(
+      'type' => 'text_textarea',
+      'weight' => 0,
+      'module' => 'text',
+      'active' => 1,
+      'settings' => array(
+        'rows' => 5,
+      ),
+    ),
+  );
+  return $field;
+}
+
+function pledge_mentor_fields_tips_area() {
+  $field = array(
+    'field_name' => 'field_tips_area',
+    'type' => 'text_long',
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => 0,
+    ),
+    'label' => 'My tips for researchers in the same subject area',
+    'widget' => array(
+      'type' => 'text_textarea',
+      'weight' => 0,
+      'module' => 'text',
+      'active' => 1,
+      'settings' => array(
+        'rows' => 5,
+      ),
+    ),
+  );
+  return $field;
+}
+
+function pledge_mentor_fields_tips_institute() {
+  $field = array(
+    'field_name' => 'field_tips_institute',
+    'type' => 'text_long',
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => 0,
+    ),
+    'label' => 'My tips for researchers at my institute',
+    'widget' => array(
+      'type' => 'text_textarea',
+      'weight' => 0,
+      'module' => 'text',
+      'active' => 1,
+      'settings' => array(
+        'rows' => 5,
+      ),
     ),
   );
   return $field;

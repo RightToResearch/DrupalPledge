@@ -93,6 +93,47 @@ $handler->display->display_options['pager']['options']['items_per_page'] = '50';
 $handler->display->display_options['pager']['options']['offset'] = '0';
 $handler->display->display_options['pager']['options']['id'] = '0';
 $handler->display->display_options['pager']['options']['quantity'] = '9';
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: User: Uid */
+$handler->display->display_options['fields']['uid']['id'] = 'uid';
+$handler->display->display_options['fields']['uid']['table'] = 'users';
+$handler->display->display_options['fields']['uid']['field'] = 'uid';
+$handler->display->display_options['fields']['uid']['exclude'] = TRUE;
+/* Field: User: Given Name(s) */
+$handler->display->display_options['fields']['field_given_name']['id'] = 'field_given_name';
+$handler->display->display_options['fields']['field_given_name']['table'] = 'field_data_field_given_name';
+$handler->display->display_options['fields']['field_given_name']['field'] = 'field_given_name';
+$handler->display->display_options['fields']['field_given_name']['exclude'] = TRUE;
+/* Field: User: Family Name */
+$handler->display->display_options['fields']['field_family_name']['id'] = 'field_family_name';
+$handler->display->display_options['fields']['field_family_name']['table'] = 'field_data_field_family_name';
+$handler->display->display_options['fields']['field_family_name']['field'] = 'field_family_name';
+$handler->display->display_options['fields']['field_family_name']['label'] = 'Name';
+$handler->display->display_options['fields']['field_family_name']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_family_name']['alter']['text'] = '[field_family_name], [field_given_name]';
+$handler->display->display_options['fields']['field_family_name']['alter']['make_link'] = TRUE;
+$handler->display->display_options['fields']['field_family_name']['alter']['path'] = 'user/[uid]';
+/* Field: User: Institution */
+$handler->display->display_options['fields']['field_institution']['id'] = 'field_institution';
+$handler->display->display_options['fields']['field_institution']['table'] = 'field_data_field_institution';
+$handler->display->display_options['fields']['field_institution']['field'] = 'field_institution';
+/* Field: User: Discipline */
+$handler->display->display_options['fields']['field_discipline']['id'] = 'field_discipline';
+$handler->display->display_options['fields']['field_discipline']['table'] = 'field_data_field_discipline';
+$handler->display->display_options['fields']['field_discipline']['field'] = 'field_discipline';
+/* Field: User: Country */
+$handler->display->display_options['fields']['field_country']['id'] = 'field_country';
+$handler->display->display_options['fields']['field_country']['table'] = 'field_data_field_country';
+$handler->display->display_options['fields']['field_country']['field'] = 'field_country';
+$handler->display->display_options['fields']['field_country']['type'] = 'country_icon';
+$handler->display->display_options['fields']['field_country']['settings'] = array(
+  'countryiconset' => 'icon_shiny',
+  'property' => 'name',
+);
+/* Field: User: Picture */
+$handler->display->display_options['fields']['picture']['id'] = 'picture';
+$handler->display->display_options['fields']['picture']['table'] = 'users';
+$handler->display->display_options['fields']['picture']['field'] = 'picture';
 $handler->display->display_options['defaults']['sorts'] = FALSE;
 /* Sort criterion: User: Family Name (field_family_name) */
 $handler->display->display_options['sorts']['field_family_name_value']['id'] = 'field_family_name_value';
@@ -242,6 +283,47 @@ $handler->display->display_options['pager']['options']['items_per_page'] = '50';
 $handler->display->display_options['pager']['options']['offset'] = '0';
 $handler->display->display_options['pager']['options']['id'] = '0';
 $handler->display->display_options['pager']['options']['quantity'] = '9';
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: User: Uid */
+$handler->display->display_options['fields']['uid']['id'] = 'uid';
+$handler->display->display_options['fields']['uid']['table'] = 'users';
+$handler->display->display_options['fields']['uid']['field'] = 'uid';
+$handler->display->display_options['fields']['uid']['exclude'] = TRUE;
+/* Field: User: Given Name(s) */
+$handler->display->display_options['fields']['field_given_name']['id'] = 'field_given_name';
+$handler->display->display_options['fields']['field_given_name']['table'] = 'field_data_field_given_name';
+$handler->display->display_options['fields']['field_given_name']['field'] = 'field_given_name';
+$handler->display->display_options['fields']['field_given_name']['exclude'] = TRUE;
+/* Field: User: Family Name */
+$handler->display->display_options['fields']['field_family_name']['id'] = 'field_family_name';
+$handler->display->display_options['fields']['field_family_name']['table'] = 'field_data_field_family_name';
+$handler->display->display_options['fields']['field_family_name']['field'] = 'field_family_name';
+$handler->display->display_options['fields']['field_family_name']['label'] = 'Name';
+$handler->display->display_options['fields']['field_family_name']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_family_name']['alter']['text'] = '[field_family_name], [field_given_name]';
+$handler->display->display_options['fields']['field_family_name']['alter']['make_link'] = TRUE;
+$handler->display->display_options['fields']['field_family_name']['alter']['path'] = 'user/[uid]';
+/* Field: User: Institution */
+$handler->display->display_options['fields']['field_institution']['id'] = 'field_institution';
+$handler->display->display_options['fields']['field_institution']['table'] = 'field_data_field_institution';
+$handler->display->display_options['fields']['field_institution']['field'] = 'field_institution';
+/* Field: User: Discipline */
+$handler->display->display_options['fields']['field_discipline']['id'] = 'field_discipline';
+$handler->display->display_options['fields']['field_discipline']['table'] = 'field_data_field_discipline';
+$handler->display->display_options['fields']['field_discipline']['field'] = 'field_discipline';
+/* Field: User: Country */
+$handler->display->display_options['fields']['field_country']['id'] = 'field_country';
+$handler->display->display_options['fields']['field_country']['table'] = 'field_data_field_country';
+$handler->display->display_options['fields']['field_country']['field'] = 'field_country';
+$handler->display->display_options['fields']['field_country']['type'] = 'country_icon';
+$handler->display->display_options['fields']['field_country']['settings'] = array(
+  'countryiconset' => 'icon_shiny',
+  'property' => 'name',
+);
+/* Field: User: Picture */
+$handler->display->display_options['fields']['picture']['id'] = 'picture';
+$handler->display->display_options['fields']['picture']['table'] = 'users';
+$handler->display->display_options['fields']['picture']['field'] = 'picture';
 $handler->display->display_options['defaults']['sorts'] = FALSE;
 /* Sort criterion: User: Family Name (field_family_name) */
 $handler->display->display_options['sorts']['field_family_name_value']['id'] = 'field_family_name_value';
@@ -333,6 +415,296 @@ $handler->display->display_options['menu']['name'] = 'main-menu';
 $handler->display->display_options['menu']['context'] = 0;
 $handler->display->display_options['menu']['context_only_inline'] = 0;
 
+return $view;
+}
 
+function pledge_views_support() {
+$view = new view();
+$view->name = 'support';
+$view->description = '';
+$view->tag = 'default';
+$view->base_table = 'node';
+$view->human_name = 'Support';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['title'] = 'Support Articles';
+$handler->display->display_options['use_more_always'] = FALSE;
+$handler->display->display_options['access']['type'] = 'perm';
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['style_plugin'] = 'default';
+$handler->display->display_options['row_plugin'] = 'fields';
+/* Field: Content: Title */
+$handler->display->display_options['fields']['title']['id'] = 'title';
+$handler->display->display_options['fields']['title']['table'] = 'node';
+$handler->display->display_options['fields']['title']['field'] = 'title';
+$handler->display->display_options['fields']['title']['label'] = '';
+$handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+$handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+/* Sort criterion: Content: Post date */
+$handler->display->display_options['sorts']['created']['id'] = 'created';
+$handler->display->display_options['sorts']['created']['table'] = 'node';
+$handler->display->display_options['sorts']['created']['field'] = 'created';
+$handler->display->display_options['sorts']['created']['order'] = 'DESC';
+/* Filter criterion: Content: Published */
+$handler->display->display_options['filters']['status']['id'] = 'status';
+$handler->display->display_options['filters']['status']['table'] = 'node';
+$handler->display->display_options['filters']['status']['field'] = 'status';
+$handler->display->display_options['filters']['status']['value'] = 1;
+$handler->display->display_options['filters']['status']['group'] = 1;
+$handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+/* Filter criterion: Content: Type */
+$handler->display->display_options['filters']['type']['id'] = 'type';
+$handler->display->display_options['filters']['type']['table'] = 'node';
+$handler->display->display_options['filters']['type']['field'] = 'type';
+$handler->display->display_options['filters']['type']['value'] = array(
+  'support_page' => 'support_page',
+);
+
+/* Display: Block */
+$handler = $view->new_display('block', 'Block', 'block');
+return $view;
+}
+
+function pledge_views_mentors(){
+$view = new view();
+$view->name = 'mentors';
+$view->description = '';
+$view->tag = 'default';
+$view->base_table = 'users';
+$view->human_name = 'Mentors';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['use_more_always'] = FALSE;
+$handler->display->display_options['access']['type'] = 'none';
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['style_plugin'] = 'table';
+$handler->display->display_options['style_options']['columns'] = array(
+  'field_favourites' => 'field_favourites',
+  'field_tips_area' => 'field_favourites',
+  'field_tips_institute' => 'field_favourites',
+);
+$handler->display->display_options['style_options']['default'] = '-1';
+$handler->display->display_options['style_options']['info'] = array(
+  'field_favourites' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_tips_area' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_tips_institute' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+);
+/* Field: User: Picture */
+$handler->display->display_options['fields']['picture']['id'] = 'picture';
+$handler->display->display_options['fields']['picture']['table'] = 'users';
+$handler->display->display_options['fields']['picture']['field'] = 'picture';
+$handler->display->display_options['fields']['picture']['label'] = '';
+$handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
+/* Field: User: About Me */
+$handler->display->display_options['fields']['field_about_me']['id'] = 'field_about_me';
+$handler->display->display_options['fields']['field_about_me']['table'] = 'field_data_field_about_me';
+$handler->display->display_options['fields']['field_about_me']['field'] = 'field_about_me';
+$handler->display->display_options['fields']['field_about_me']['label'] = '';
+$handler->display->display_options['fields']['field_about_me']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_about_me']['alter']['text'] = '<h2>About Me</h2>[field_about_me]';
+$handler->display->display_options['fields']['field_about_me']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_about_me']['hide_alter_empty'] = FALSE;
+/* Field: User: About My Research */
+$handler->display->display_options['fields']['field_about_my_research']['id'] = 'field_about_my_research';
+$handler->display->display_options['fields']['field_about_my_research']['table'] = 'field_data_field_about_my_research';
+$handler->display->display_options['fields']['field_about_my_research']['field'] = 'field_about_my_research';
+$handler->display->display_options['fields']['field_about_my_research']['label'] = '';
+$handler->display->display_options['fields']['field_about_my_research']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_about_my_research']['alter']['text'] = '<h2>About My Research</h2>[field_about_my_research]';
+$handler->display->display_options['fields']['field_about_my_research']['element_label_colon'] = FALSE;
+/* Field: User: Family Name */
+$handler->display->display_options['fields']['field_family_name']['id'] = 'field_family_name';
+$handler->display->display_options['fields']['field_family_name']['table'] = 'field_data_field_family_name';
+$handler->display->display_options['fields']['field_family_name']['field'] = 'field_family_name';
+$handler->display->display_options['fields']['field_family_name']['label'] = '';
+$handler->display->display_options['fields']['field_family_name']['exclude'] = TRUE;
+$handler->display->display_options['fields']['field_family_name']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_family_name']['element_label_colon'] = FALSE;
+/* Field: User: Given Name(s) */
+$handler->display->display_options['fields']['field_given_name']['id'] = 'field_given_name';
+$handler->display->display_options['fields']['field_given_name']['table'] = 'field_data_field_given_name';
+$handler->display->display_options['fields']['field_given_name']['field'] = 'field_given_name';
+$handler->display->display_options['fields']['field_given_name']['label'] = '';
+$handler->display->display_options['fields']['field_given_name']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_given_name']['alter']['text'] = '<strong>Name:</strong> [field_given_name] [field_family_name]<br/>';
+$handler->display->display_options['fields']['field_given_name']['element_label_colon'] = FALSE;
+/* Field: User: Institution */
+$handler->display->display_options['fields']['field_institution']['id'] = 'field_institution';
+$handler->display->display_options['fields']['field_institution']['table'] = 'field_data_field_institution';
+$handler->display->display_options['fields']['field_institution']['field'] = 'field_institution';
+$handler->display->display_options['fields']['field_institution']['label'] = '';
+$handler->display->display_options['fields']['field_institution']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_institution']['alter']['text'] = '<strong>Institution:</strong> [field_institution]';
+$handler->display->display_options['fields']['field_institution']['element_label_colon'] = FALSE;
+/* Contextual filter: User: Uid */
+$handler->display->display_options['arguments']['uid']['id'] = 'uid';
+$handler->display->display_options['arguments']['uid']['table'] = 'users';
+$handler->display->display_options['arguments']['uid']['field'] = 'uid';
+$handler->display->display_options['arguments']['uid']['default_action'] = 'default';
+$handler->display->display_options['arguments']['uid']['default_argument_type'] = 'user';
+$handler->display->display_options['arguments']['uid']['default_argument_options']['user'] = FALSE;
+$handler->display->display_options['arguments']['uid']['summary']['number_of_records'] = '0';
+$handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
+$handler->display->display_options['arguments']['uid']['summary_options']['items_per_page'] = '25';
+/* Filter criterion: User: Active */
+$handler->display->display_options['filters']['status']['id'] = 'status';
+$handler->display->display_options['filters']['status']['table'] = 'users';
+$handler->display->display_options['filters']['status']['field'] = 'status';
+$handler->display->display_options['filters']['status']['value'] = '1';
+$handler->display->display_options['filters']['status']['group'] = 1;
+$handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+
+/* Display: Block */
+$handler = $view->new_display('block', 'Block', 'block');
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'table';
+$handler->display->display_options['style_options']['columns'] = array(
+  'picture' => 'picture',
+  'field_about_me' => 'field_about_me',
+  'field_about_my_research' => 'field_about_me',
+  'field_family_name' => 'picture',
+  'field_given_name' => 'picture',
+  'field_institution' => 'picture',
+);
+$handler->display->display_options['style_options']['default'] = '-1';
+$handler->display->display_options['style_options']['info'] = array(
+  'picture' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_about_me' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_about_my_research' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_family_name' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_given_name' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_institution' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+);
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+
+/* Display: User Page 2 */
+$handler = $view->new_display('block', 'User Page 2', 'block_1');
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'table';
+$handler->display->display_options['style_options']['columns'] = array(
+  'field_favourites' => 'field_favourites',
+  'field_tips_area' => 'field_favourites',
+  'field_tips_institute' => 'field_favourites',
+);
+$handler->display->display_options['style_options']['default'] = '-1';
+$handler->display->display_options['style_options']['info'] = array(
+  'field_favourites' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_tips_area' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_tips_institute' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+);
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: User: My favourite OA journal(s) / repositories */
+$handler->display->display_options['fields']['field_favourites']['id'] = 'field_favourites';
+$handler->display->display_options['fields']['field_favourites']['table'] = 'field_data_field_favourites';
+$handler->display->display_options['fields']['field_favourites']['field'] = 'field_favourites';
+$handler->display->display_options['fields']['field_favourites']['label'] = '';
+$handler->display->display_options['fields']['field_favourites']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_favourites']['alter']['text'] = '<h2>My favourite OA journal(s) / repositories</h2>[field_favourites]';
+$handler->display->display_options['fields']['field_favourites']['element_label_colon'] = FALSE;
+/* Field: User: My tips for researchers in the same subject area */
+$handler->display->display_options['fields']['field_tips_area']['id'] = 'field_tips_area';
+$handler->display->display_options['fields']['field_tips_area']['table'] = 'field_data_field_tips_area';
+$handler->display->display_options['fields']['field_tips_area']['field'] = 'field_tips_area';
+$handler->display->display_options['fields']['field_tips_area']['label'] = '';
+$handler->display->display_options['fields']['field_tips_area']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_tips_area']['alter']['text'] = '<h2>My tips for researchers in the same subject area</h2>[field_tips_area]';
+$handler->display->display_options['fields']['field_tips_area']['element_label_colon'] = FALSE;
+/* Field: User: My tips for researchers at my institute */
+$handler->display->display_options['fields']['field_tips_institute']['id'] = 'field_tips_institute';
+$handler->display->display_options['fields']['field_tips_institute']['table'] = 'field_data_field_tips_institute';
+$handler->display->display_options['fields']['field_tips_institute']['field'] = 'field_tips_institute';
+$handler->display->display_options['fields']['field_tips_institute']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_tips_institute']['alter']['text'] = '<h2>My tips for researchers at my institute</h2>[field_tips_institute]';
 return $view;
 }

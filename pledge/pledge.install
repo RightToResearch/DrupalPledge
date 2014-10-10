@@ -16,14 +16,26 @@ function pledge_install() {
   //Throw in some default text
   variable_set('pledge_pledgetext', 'Visit the Pledge settings page to change your pledge text.');
   variable_set('pledge_signed', 'Thanks for signing!');
+  variable_set('pledge_supporttitle', 'We\'re here to help...');
 
   //Add fields to the user bundle
   pledge_install_user_fields();
 
-  //Create the Mentor role
-  $role = new stdClass();
-  $role->name = 'Mentor';
-  user_role_save($role);
+  //We use views and contexts to provide user pages, hide all fields
+  pledge_install_user_fields_display();
+
+  //Create new node types
+  pledge_install_node_types();
+
+  //Create Full HTML filter
+  pledge_install_filters();
+
+  //Create new roles
+  pledge_install_roles();
+
+  //Set role permissions
+  pledge_install_permissions();
+
 
   //Place the sign in block in the header region
   $block = array(
@@ -64,7 +76,7 @@ function pledge_install_user_fields() {
         'entity_type' => 'user',
         'label' => $field['label'],
         'bundle' => 'user',
-        'required' => $field['settings']['required'],
+        'required' => (isset($field['settings']['required']) ? $field['settings']['required']: FALSE),
         'widget' => $field['widget'],
         'settings' => array(
           'user_register_form' => $field['settings']['user_register_form'],
@@ -75,9 +87,80 @@ function pledge_install_user_fields() {
   }
 }
 
-function pledge_update_7700() {
+function pledge_install_node_types() {
+  $type = array(
+    'type' => 'support_page',
+    'name' => 'Support Page',
+    'description' => 'Pledge support articles',
+    'base' => 'node_content',
+    'custom' => FALSE,
+    'locked' => TRUE,
+    'has_title' => TRUE,
+    'title_label' => 'Title',
+    'module' => 'pledge',
+  );
+  $type = node_type_set_defaults($type);
+  node_type_save($type);
+  node_add_body_field($type);
+}
+
+function pledge_install_roles() {
   //Create the Mentor role
   $role = new stdClass();
   $role->name = 'Mentor';
   user_role_save($role);
+
+  //Create the Content Manager role
+  $role = new stdClass();
+  $role->name = 'Content Manager';
+  user_role_save($role);
+}
+
+function pledge_install_filters() {
+  //Check if Full HTML filter already exists
+  $format_exists = (bool) db_query_range('SELECT 1 FROM {filter_format} WHERE name = :name', 0, 1, array(':name' => 'Full HTML'))->fetchField();
+  if (!$format_exists) {
+    $format = array(
+      'format' => 'full_html',
+      'name' => 'Full HTML',
+      'weight' => 9,
+      'filters' => array(
+        
+        // Enable the PHP evaluator filter.
+        'filter_htmlcorrector' => array(
+          'weight' => 0,
+          'status' => 1,
+        ),
+        'filter_url' => array(
+          'weight' => 1,
+          'status' => 1,
+        ),
+      ),
+    );
+    $format = (object) $format;
+    filter_format_save($format);
+  }
+}
+
+function pledge_install_permissions() {
+  //Set roles for Content Manager
+  $cm_roles = array(
+    'use text format full_html',
+  );
+  $cm = user_role_load_by_name('Content Manager');
+  user_role_grant_permissions($cm->rid, $cm_roles);
+}
+
+function pledge_install_user_fields_display() {
+  //Build a liist of fields
+  module_load_include('inc', 'pledge', 'user_fields');
+  $fields   = array_keys(pledge_user_fields());
+  foreach ($fields as $field_name) {
+    // Fetch an instance info array.
+    $instance_info = field_info_instance('user', $field_name, 'user');
+    // Change a single property in the instance definition.
+    $instance_info['display']['default']['type'] = 'hidden';
+    // Write the changed definition back.
+    field_update_instance($instance_info);
+  }
 }

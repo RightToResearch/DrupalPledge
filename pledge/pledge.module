@@ -23,6 +23,8 @@ function pledge_views_default_views() {
   module_load_include('inc', 'pledge', 'views');
   $views = array();
   $views['signatories'] = pledge_views_signatories();
+  $views['support'] = pledge_views_support();
+  $views['mentors'] = pledge_views_mentors();
   return $views; 
 }
 
@@ -33,6 +35,9 @@ function pledge_ctools_plugin_api($module, $api) {
   if ($module == 'page_manager' && $api == 'pages_default') {
     return array('version' => 1);
   }
+  if ($module == 'context' && ($api == 'plugins' || $api = 'context')) {
+    return array('version' => 3);
+  }
 }
 
 /**
@@ -42,12 +47,24 @@ function pledge_default_page_manager_pages() {
   module_load_include('inc', 'pledge', 'pages');
   $pages = array();
   $pages['home'] = pledge_pages_home();
+  $pages['support'] = pledge_pages_support();
   return $pages;
 }
 
 /**
-* Implements hook_menu().
-*/
+ * Implements hook_context_default_contexts() 
+ */
+function pledge_context_default_contexts() {
+  module_load_include('inc', 'pledge', 'contexts');
+  $contexts = array();
+  $contexts['support'] = pledge_contexts_support();
+  $contexts['users'] = pledge_contexts_users();
+  return $contexts;
+}
+
+/**
+ * Implements hook_menu().
+ */
 function pledge_menu() {
   $items = array();
   $items['admin/config/content/pledge'] = array(
@@ -82,6 +99,8 @@ function pledge_menu_alter(&$items) {
   //Add the forum link to the main menu
   $items['forum']['menu_name'] = 'main-menu';
   $items['forum']['weight'] = 0;
+  //Shift the support menu item to the main menu
+  $items['support']['menu_name'] = 'main-menu';
 }
 
 /**
@@ -132,6 +151,33 @@ function pledge_block_view($delta = '') {
       break;
   }
   return $block;
+}
+
+/**
+ * Implements hook_field_access().
+ */
+function pledge_field_access($op, $field, $entity_type, $entity, $account) {
+  //Mentor only fields should not be editable by non-mentors
+  module_load_include('inc', 'pledge', 'user_fields');
+  $mentor_fields = pledge_mentor_fields();
+  if ($entity_type == 'user' && array_key_exists($field['field_name'], $mentor_fields) && $op == 'edit') {
+    //User is trying to edit a mentor field
+    if (!in_array('Mentor', $account->roles)) {
+      //Only mentors may edit
+      return FALSE;
+    }
+  }
+  return TRUE;
+}
+
+/**
+ * Implements hook_user_view_alter().
+ */
+function pledge_user_view_alter(&$build) {
+  //print "<PRE>";print_r($build);exit;
+  //Done here so works in any theme
+  unset($build['summary']);
+  unset($build['user_picture']);
 }
 
 /////////////////////////////////////////////////////////////////////
