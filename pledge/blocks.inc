@@ -51,3 +51,56 @@ function pledge_signed_block() {
 function pledge_signin_block() {
   return l('Already pledged? Sign in.', 'user');
 }
+
+/**
+ * Progress block
+ */
+function pledge_progress_block() {
+  $progress = array();
+  pledge_progress_user($progress);
+  pledge_progress_forum($progress);
+  pledge_progress_support_pages($progress);
+
+  //Create output
+  $output = '';
+
+  foreach ($progress as $task => $status) {
+    $output .= $task . ' ';
+    $output .= $status ? 'DONE!' : 'To Do';
+    $output .= '<br />';
+  }
+  return $output;
+}
+
+function pledge_progress_user(&$progress) {
+  global $user;
+  $progress['Signed the pledge'] = ($user->uid != 0) ? TRUE : FALSE;
+}
+
+function pledge_progress_forum(&$progress) {
+  global $user;
+  $result = db_query("SELECT COUNT(nid) as count FROM node WHERE type = 'forum' AND uid = :uid;", array(':uid' => $user->uid));
+  $progress['Asked a question in the forum'] = ($result->fetchCol()[0] > 0) ? TRUE : FALSE;
+}
+
+function pledge_progress_support_pages(&$progress) {
+  global $user;
+
+  //Get list of support pages
+  $result = db_query("SELECT nid, title FROM node WHERE type = 'support_page'");
+  $pages = $result->fetchAllKeyed();
+  //Get list of pages user has visited
+  $result = db_query("SELECT type_id FROM pledge_tasks WHERE type = 'support_page' AND uid = :uid", array(':uid' => $user->uid));
+  $visited = $result->fetchCol();
+
+  //Append data to $progress array
+  foreach ($pages as $nid => $title) {
+    $progress['Read '.$title] = (in_array($nid, $visited)) ? TRUE : FALSE;
+  }
+}
+
+function pledge_read_block() {
+
+  //If not previously read
+  return drupal_get_form('pledge_mark_as_read_form');
+}

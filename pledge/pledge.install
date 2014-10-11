@@ -92,6 +92,8 @@ function pledge_install_user_fields() {
  */
 function pledge_schema() {
   $schema = array();
+
+  //pledge_tasks enables monitoring of progress through the site
   $schema['pledge_tasks'] = array(
     'description' => 'Tracks completed tasks by a user',
     'fields' => array(

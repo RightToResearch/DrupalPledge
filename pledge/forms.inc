@@ -40,3 +40,15 @@ function pledge_admin_form($form, &$form_state) {
   );
   return $form;
 }
+
+function pledge_mark_as_read_form($form, &$form_state) {
+  $form['pledge_read'] = array(
+    '#type' => 'submit',
+    '#value' => 'Mark as read',
+  );
+  return $form;
+}
+
+function pledge_mark_as_read_form_submit($form, &$form_sate) {
+  drupal_set_message('Read!');
+}

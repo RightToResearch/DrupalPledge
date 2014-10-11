@@ -118,6 +118,12 @@ function pledge_block_info() {
   $blocks['text-pledge'] = array(
     'info' => t('Text of the pledge'),
   );
+  $blocks['progress-pledge'] = array(
+    'info' => t('User\'s progress'),
+  );
+  $blocks['read-pledge'] = array(
+    'info' => t('Mark as read'),
+  );
 
   return $blocks;
 }
@@ -148,6 +154,15 @@ function pledge_block_view($delta = '') {
     case 'text-pledge':
       $block['subject'] = '';
       $block['content'] = pledge_text_pledge_block();
+      break;
+    case 'progress-pledge':
+      $block['subject'] = '';
+      $block['content'] = pledge_progress_block();
+      break;
+    case 'read-pledge':
+      module_load_include('inc', 'pledge', 'forms');
+      $block['subject'] = '';
+      $block['content'] = pledge_read_block();
       break;
   }
   return $block;
