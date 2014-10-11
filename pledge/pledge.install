@@ -86,6 +86,39 @@ function pledge_install_user_fields() {
   }
 }
 
+
+/**
+ * Implements hook_schema().
+ */
+function pledge_schema() {
+  $schema = array();
+  $schema['pledge_tasks'] = array(
+    'description' => 'Tracks completed tasks by a user',
+    'fields' => array(
+      'uid' => array(
+        'description' => 'User uid',
+        'type' => 'int',
+        'size' => 'normal',
+      ),
+      'type' => array(
+        'description' => 'The type of task completed, e.g.: node, module',
+        'type' => 'varchar',
+        'length' => 255,
+      ),
+      'type_id' => array(
+        'description' => 'Unique identifier of type of type',
+        'type' => 'int',
+        'size' => 'normal',
+      ),
+    ),
+    'primary key' => array(
+      'uid',
+    ),
+  );
+
+  return $schema;
+}
+
 /**
  * Create custom content (node) types
  */
@@ -159,9 +192,11 @@ function pledge_install_permissions() {
     ),
     'authenticated user' => array(
       'access user profiles',
+      'use gravatar',
     ),
     'anonymous user' => array(
       'access user profiles',
+      'use gravatar'
     ),
   );
 
