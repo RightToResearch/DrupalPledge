@@ -1,0 +1,6 @@
+name = Pledge Content
+description = Initial content for pledhe.
+core = 7.x
+package = Pledge
+
+dependencies[] = pledge

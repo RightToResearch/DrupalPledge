@@ -1,0 +1,129 @@
+<?php
+
+function pledge_content_install() {
+  pledge_content_what_is_oa();
+  pledge_content_open_vs_free();
+  pledge_content_benefits_of_oa();
+}
+
+function pledge_content_update_7005() {
+  pledge_content_install();
+}
+
+function pledge_content_open_vs_free() {
+  $values = array(
+    'type' => 'support_page',
+    'uid' => 1,
+    'status' => 1,
+    'comment' => 0,
+    'promote' => 0,
+  );
+  $entity = entity_create('node', $values);
+  $wrapper = entity_metadata_wrapper('node', $entity);
+
+  $wrapper->title->set('What is the difference between open access & free access?');
+
+  $main_text  = '<p>Open Access resources allow permanent unrestricted access AND unrestricted reuse. Typically by way of licensing under a Creative Commons Attribution License (CC BY), or a CC0 waiver that dedicates the work into the public domain.</p>';
+  $main_text .= '<p>Many online articles have some elements of openness, but not the full open access package. To distinguish these from ‘truly’ open access articles we call these ‘free access’ articles.</p>';
+  $main_text .= '<p><strong>Typical examples of freely accessible but not open access articles:</strong></p>';
+  $main_text .= '<ul>';
+  $main_text .= '<li>Article is available online for free for a six month period, after which it is only legally available behind a paywall</li>';
+  $main_text .= '<li>Article is available online for free on a permanent basis, but re-use rights are restricted e.g. the article is licensed under copyright or ';
+  $main_text .= l('CC BY-NC', 'https://creativecommons.org/licenses/by-nc/4.0/');
+  $main_text .= ', ';
+  $main_text .= l('CC BY-NC-ND', 'https://creativecommons.org/licenses/by-nc-nd/4.0/');
+  $main_text .= ' or ';
+  $main_text .= l('CC BY-ND', 'https://creativecommons.org/licenses/by-nd/4.0/');
+  $main_text .= '</li>';
+  $main_text .= '</ul>';
+  $main_text .= '<p>If in doubt about the openness of an article publishing option refer to ';
+  $main_text .= l('the PLOS guide to \'How Open Is It?\'', 'http://www.plos.org/open-access/howopenisit/');
+  $main_text .= '</p>';
+  $main_text .= '<p><strong>Practically-speaking, why is ‘open’ so important? Is free not enough?</strong></p>';
+  $main_text .= '<p>Free is good, it enables people to read resources. But open is better, it enables reading AND re-use of resources.</p>';
+  $main_text .= '<p>There are certain use-cases for which free just won’t do:</p>';
+  $main_text .= '<ul>';
+  $main_text .= '<li>Teaching. Often free articles are just free for individuals. If you want to print 50 copies for teaching a class you may have to pay for a licence to do so.</li>';
+  $main_text .= '<li>Text and Data Mining (TDM). The analysis of thousands of articles to extract information efficiently by machine often requires the source material to be converted into different formats & chopped-up into smaller elements. Unless the article is open, TDM may not be permitted without additional licensing or permissions, depending on which jurisdiction you’re in.</li>';
+  $main_text .= '<li>Wikimedia. In general, you can’t upload non-open content to Wikimedia - they don’t allow it. So if you have excellent pretty figures or videos in your articles make sure they’re openly licensed or else they can’t be re-used on Wikimedia projects like Wikipedia (one of the world’s most popular websites).</li>';
+  $main_text .= '</ul>';
+  $main_text .= '<p>That’s why many research funders such as the Wellcome Trust specifically require that if open access article processing charges are to be paid, that the resulting published article must be open (CC BY or CC0).</p>';
+  $main_text .= '<p><strong>Further reading:</strong></p>';
+  $main_text .= '<p>Hagedorn, G., Mietchen, D., Morris, R., Agosti, D., Penev, L., Berendsohn, W., and Hobern, D. 2011. ';
+  $main_text .= l('Creative commons licenses and the non-commercial condition: Implications for the re-use of biodiversity information.', 'http://dx.doi.org/10.3897/zookeys.150.2189');
+  $main_text .= '<p> <em>ZooKeys</em> 150:127-149.</p>';
+  $main_text .= '<p>Mounce, R. 2012.';
+  $main_text .= l('Life as a palaeontologist: Academia, the internet and creative commons.','http://www.palaeontologyonline.com/articles/2012/life-as-a-palaeontologist-academia-the-internet-and-creative-commons/');
+  $main_text .= ' <em>Palaeontology Online</em> 2:1-10.</p>';
+  $main_text .= '<p>Klimpel, P. 2012. ';
+  $main_text .= l('Consequences, Risks, and side-effects of the license module Non-Commercial – NC', 'http://openglam.org/files/2013/01/iRights_CC-NC_Guide_English.pdf');
+  $main_text .= ' [PDF] 1-22.</p>';
+
+  $wrapper->body->set(array('value' => $main_text, 'format' => 'full_html'));
+
+  $wrapper->save();
+}
+
+function pledge_content_what_is_oa() {
+  $values = array(
+    'type' => 'support_page',
+    'uid' => 1,
+    'status' => 1,
+    'comment' => 0,
+    'promote' => 0,
+  );
+  $entity = entity_create('node', $values);
+  $wrapper = entity_metadata_wrapper('node', $entity);
+
+  $wrapper->title->set('What is Open Access?');
+
+  $main_text  = '<p>Open Access (OA) stands for unrestricted access and unrestricted reuse. Here’s why that matters.</p>';
+  $main_text .= '<p>Most traditional publishers own the rights to the articles in their journals. Anyone who wants to read the articles must pay to access them. Anyone who wants to use the articles in any way must obtain permission from the publisher and is often required to pay an additional fee.</p>';
+  $main_text .= '<p>Although many researchers can access the journals they need via their institution and think that their access is free, in reality it is not. The institution has often been involved in lengthy negotiations around the price of their site license and re-use of this content is limited.</p>';
+  $main_text .= '<p>Paying for access to content makes sense in the world of print publishing, where providing content to each new reader requires the production & mailing of an additional physical copy, but online it makes much less sense to charge for content when it is possible to provide access to all readers anywhere in the world.</p>';
+  $main_text .= '<p>Modififed from http://www.plos.org/open-access/</p>';
+
+  $wrapper->body->set(array('value' => $main_text, 'format' => 'full_html'));
+
+  $wrapper->save();
+}
+
+function pledge_content_benefits_of_oa() {
+  $values = array(
+    'type' => 'support_page',
+    'uid' => 1,
+    'status' => 1,
+    'comment' => 0,
+    'promote' => 0,
+  );
+  $entity = entity_create('node', $values);
+  $wrapper = entity_metadata_wrapper('node', $entity);
+
+  $wrapper->title->set('The benefits of Open Access');
+
+  $main_text  = '<ul>';
+  $main_text .= '<li><strong>Accelerated discovery.</strong> With open access, researchers can read and build on the findings of others without restriction.</li>';
+  $main_text .= '<li><strong>Public enrichment.</strong> Much scientific and medical research is paid for with public funds. Open Access allows taxpayers to see the results of their investment.</li>';
+  $main_text .= '<li><strong>Improved education.</strong> Open Access means that teachers and their students have access to the latest research findings throughout the world.</li>';
+  $main_text .= '</ul>';
+
+  $main_text .= '<p><strong>For Researchers:</strong></p>';
+  $main_text .= '<ul>';
+  $main_text .= '<li>Increased downloads, views, and citations of their work - as demonstrated by numerous peer-reviewed studies</li>';
+  $main_text .= '<li>Wider dissemination and awareness of your work [people can actually access/read it!]</li>';
+  $main_text .= '</ul>';
+
+  $main_text .= '<p><strong>For Patients:</strong></p>';
+
+  $main_text .= '<p><strong>For Retired Scholars:</strong></p>';
+
+  $main_text .= '<p>Modified from http://www.plos.org/open-access/</p>';
+
+  $wrapper->body->set(array('value' => $main_text, 'format' => 'full_html'));
+
+  $wrapper->save();
+}
+
+function pledge_content_update_7015() {
+  pledge_content_benefits_of_oa();
+}
