@@ -61,11 +61,18 @@ function pledge_signin_block() {
 function pledge_progress_block() {
   $progress = array();
   pledge_progress_user($progress);
-  pledge_progress_forum($progress);
   pledge_progress_support_pages($progress);
+  pledge_progress_forum($progress);
 
   //Create output
-  $output = '<table>';
+  $output = '';
+  global $user;
+  if ($user->uid == 0) {
+   $output .= l('Sign the pledge', '<front>') . ' or ' . l('sign in', 'user') . ' to track your progress.';
+  }
+
+
+  $output .= '<table>';
   $tick_path = drupal_get_path('theme', 'seven') . '/images/task-check.png';
 
   foreach ($progress as $task => $status) {
@@ -87,8 +94,12 @@ function pledge_progress_user(&$progress) {
 
 function pledge_progress_forum(&$progress) {
   global $user;
+
   $result = db_query("SELECT COUNT(nid) as count FROM node WHERE type = 'forum' AND uid = :uid;", array(':uid' => $user->uid));
   $progress['Asked a question in the '.l('forum', 'forum')] = ($result->fetchCol()[0] > 0) ? TRUE : FALSE;
+
+  $result = db_query("SELECT COUNT(uid) FROM comment WHERE uid = :uid", array(':uid' => $user->uid));
+  $progress['Replied to a question in the '.l('forum', 'forum')] = ($result->fetchCol()[0] > 0) ? TRUE : FALSE;
 }
 
 function pledge_progress_support_pages(&$progress) {
