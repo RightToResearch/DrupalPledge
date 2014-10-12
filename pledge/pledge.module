@@ -112,6 +112,10 @@ function pledge_menu_alter(&$items) {
   //Change the access callback of user contact forms
   $items['user/%user/contact']['access callback'] = 'pledge_contact_callback';
   $items['user/%user/contact']['access arguments'] = array(1);
+  //Modify user/register
+  $items['user/register']['title'] = 'Sign the pledge';
+  $items['user/register']['page callback'] = 'drupal_goto';
+  $items['user/register']['page arguments'] = array('<front>');
 }
 
 function pledge_menu_links_alter(&$item, $menu) {
