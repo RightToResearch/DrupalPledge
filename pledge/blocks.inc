@@ -88,7 +88,7 @@ function pledge_progress_user(&$progress) {
 function pledge_progress_forum(&$progress) {
   global $user;
   $result = db_query("SELECT COUNT(nid) as count FROM node WHERE type = 'forum' AND uid = :uid;", array(':uid' => $user->uid));
-  $progress['Asked a question in the forum'] = ($result->fetchCol()[0] > 0) ? TRUE : FALSE;
+  $progress['Asked a question in the '.l('forum', 'forum')] = ($result->fetchCol()[0] > 0) ? TRUE : FALSE;
 }
 
 function pledge_progress_support_pages(&$progress) {
@@ -103,7 +103,7 @@ function pledge_progress_support_pages(&$progress) {
 
   //Append data to $progress array
   foreach ($pages as $nid => $title) {
-    $progress['Read '.$title] = (in_array($nid, $visited)) ? TRUE : FALSE;
+    $progress['Read '. l($title, 'node/'.$nid)] = (in_array($nid, $visited)) ? TRUE : FALSE;
   }
 }
 
