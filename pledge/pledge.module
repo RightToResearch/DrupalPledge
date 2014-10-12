@@ -17,8 +17,8 @@ function pledge_views_api() {
 }
 
 /**
-* Implements hook_views_default_views().
-*/
+ * Implements hook_views_default_views().
+ */
 function pledge_views_default_views() {
   module_load_include('inc', 'pledge', 'views');
   $views = array();
@@ -29,8 +29,8 @@ function pledge_views_default_views() {
 }
 
 /**
-* Implements hook_ctools_plugin_api().
-*/
+ * Implements hook_ctools_plugin_api().
+ */
 function pledge_ctools_plugin_api($module, $api) {
   if ($module == 'page_manager' && $api == 'pages_default') {
     return array('version' => 1);
@@ -41,8 +41,8 @@ function pledge_ctools_plugin_api($module, $api) {
 }
 
 /**
-* Implements hook_default_page_manager_pages().
-*/
+ * Implements hook_default_page_manager_pages().
+ */
 function pledge_default_page_manager_pages() {
   module_load_include('inc', 'pledge', 'pages');
   $pages = array();
@@ -102,6 +102,21 @@ function pledge_menu_alter(&$items) {
   $items['forum']['weight'] = 0;
   //Shift the support menu item to the main menu
   $items['support']['menu_name'] = 'main-menu';
+  $items['user/%user/contact']['access callback'] = 'pledge_contact_callback';
+  $items['user/%user/contact']['access arguments'] = array(1);
+}
+
+function pledge_contact_callback($target_user) {
+  //To preserve standard behaviours run the standard authentication for contact forms
+  module_load_include('module', 'contact');
+  if (_contact_personal_tab_access($target_user)) {
+    //The contact module has verified access, can we?
+    if (in_array('Mentor', $target_user->roles) && user_access('access user contact forms')) {
+      return TRUE;
+    }
+  }
+  //Sorry.....
+  return FALSE;
 }
 
 /**
@@ -201,7 +216,6 @@ function pledge_field_access($op, $field, $entity_type, $entity, $account) {
  * Implements hook_user_view_alter().
  */
 function pledge_user_view_alter(&$build) {
-  //print "<PRE>";print_r($build);exit;
   //Done here so works in any theme
   unset($build['summary']);
   unset($build['user_picture']);

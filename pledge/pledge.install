@@ -199,10 +199,12 @@ function pledge_install_permissions() {
     'authenticated user' => array(
       'access user profiles',
       'use gravatar',
+      'access user contact forms',
     ),
     'anonymous user' => array(
       'access user profiles',
-      'use gravatar'
+      'use gravatar',
+      'access site-wide contact form',
     ),
   );
 
