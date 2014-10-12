@@ -155,6 +155,9 @@ function pledge_block_info() {
   $blocks['here-to-help'] = array(
     'info' => t('Here to Help'),
   );
+  $blocks['ways-to-help'] = array(
+    'info' => t('Ways to help'),
+  );
   return $blocks;
 }
 
@@ -186,7 +189,7 @@ function pledge_block_view($delta = '') {
       $block['content'] = pledge_text_pledge_block();
       break;
     case 'progress-pledge':
-      $block['subject'] = '';
+      $block['subject'] = 'Track your progress';
       $block['content'] = pledge_progress_block();
       break;
     case 'read-pledge':
@@ -197,6 +200,10 @@ function pledge_block_view($delta = '') {
     case 'here-to-help':
       $block['subject'] = '';
       $block['content'] = pledge_here_to_help_block();
+      break;
+    case 'ways-to-help':
+      $block['subject'] = 'Ways to help';
+      $block['content'] = pledge_ways_to_help_block();
       break;
   }
   return $block;

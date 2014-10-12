@@ -132,3 +132,13 @@ function pledge_read_block() {
   //If not previously read
   return drupal_get_form('pledge_mark_as_read_form');
 }
+
+function pledge_ways_to_help_block() {
+  $output  = '<table>';
+
+  $output .= '<tr><td>' . l('Become a mentor', 'contact/2') . '</td></tr>';
+
+  $output .= '</table>';
+
+  return $output;
+}
