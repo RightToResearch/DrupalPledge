@@ -71,7 +71,8 @@ function pledge_mark_as_read_form_submit($form, &$form_state) {
     'type_id' => $form_state['values']['nid'],
   );
   $result = db_query("SELECT COUNT(uid) FROM pledge_tasks WHERE type = 'support_page' AND uid = :uid AND type_id = :tid", array(':uid' => $user->uid, ':tid' => $form_state['values']['nid']));
-  if ($result->fetchCol()[0] > 0) {
+  $result = $result->fetchCol();
+  if ($result[0] > 0) {
     ;
   } else {
     drupal_write_record('pledge_tasks', $record);
