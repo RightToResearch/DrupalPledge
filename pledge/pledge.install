@@ -27,6 +27,7 @@ function pledge_install() {
 
   //Create new node types
   pledge_install_node_types();
+  variable_set('comment_support_page', 0);
 
   //Create Full HTML filter
   pledge_install_filters();
