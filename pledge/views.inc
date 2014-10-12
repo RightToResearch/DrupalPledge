@@ -84,6 +84,12 @@ $handler->display->display_options['filters']['status']['field'] = 'status';
 $handler->display->display_options['filters']['status']['value'] = '1';
 $handler->display->display_options['filters']['status']['group'] = 1;
 $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+/* Filter criterion: User: The user ID */
+$handler->display->display_options['filters']['uid_raw']['id'] = 'uid_raw';
+$handler->display->display_options['filters']['uid_raw']['table'] = 'users';
+$handler->display->display_options['filters']['uid_raw']['field'] = 'uid_raw';
+$handler->display->display_options['filters']['uid_raw']['operator'] = '!=';
+$handler->display->display_options['filters']['uid_raw']['value']['value'] = '1';
 
 /* Display: SignatoriesPage */
 $handler = $view->new_display('page', 'SignatoriesPage', 'page');
@@ -151,65 +157,6 @@ $handler->display->display_options['sorts']['created']['table'] = 'users';
 $handler->display->display_options['sorts']['created']['field'] = 'created';
 $handler->display->display_options['sorts']['created']['exposed'] = TRUE;
 $handler->display->display_options['sorts']['created']['expose']['label'] = 'Date Signed';
-$handler->display->display_options['defaults']['filter_groups'] = FALSE;
-$handler->display->display_options['defaults']['filters'] = FALSE;
-/* Filter criterion: User: Active */
-$handler->display->display_options['filters']['status']['id'] = 'status';
-$handler->display->display_options['filters']['status']['table'] = 'users';
-$handler->display->display_options['filters']['status']['field'] = 'status';
-$handler->display->display_options['filters']['status']['value'] = '1';
-$handler->display->display_options['filters']['status']['group'] = 1;
-$handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-/* Filter criterion: User: Institution (field_institution) */
-$handler->display->display_options['filters']['field_institution_value']['id'] = 'field_institution_value';
-$handler->display->display_options['filters']['field_institution_value']['table'] = 'field_data_field_institution';
-$handler->display->display_options['filters']['field_institution_value']['field'] = 'field_institution_value';
-$handler->display->display_options['filters']['field_institution_value']['operator'] = 'contains';
-$handler->display->display_options['filters']['field_institution_value']['exposed'] = TRUE;
-$handler->display->display_options['filters']['field_institution_value']['expose']['operator_id'] = 'field_institution_value_op';
-$handler->display->display_options['filters']['field_institution_value']['expose']['label'] = 'Institution';
-$handler->display->display_options['filters']['field_institution_value']['expose']['operator'] = 'field_institution_value_op';
-$handler->display->display_options['filters']['field_institution_value']['expose']['identifier'] = 'field_institution_value';
-$handler->display->display_options['filters']['field_institution_value']['expose']['remember_roles'] = array(
-  2 => '2',
-  1 => 0,
-);
-$handler->display->display_options['filters']['field_institution_value']['group_info']['label'] = 'Institution (field_institution)';
-$handler->display->display_options['filters']['field_institution_value']['group_info']['identifier'] = 'field_institution_value';
-$handler->display->display_options['filters']['field_institution_value']['group_info']['remember'] = FALSE;
-$handler->display->display_options['filters']['field_institution_value']['group_info']['group_items'] = array(
-  1 => array(),
-  2 => array(),
-  3 => array(),
-);
-/* Filter criterion: User: Discipline (field_discipline) */
-$handler->display->display_options['filters']['field_discipline_value']['id'] = 'field_discipline_value';
-$handler->display->display_options['filters']['field_discipline_value']['table'] = 'field_data_field_discipline';
-$handler->display->display_options['filters']['field_discipline_value']['field'] = 'field_discipline_value';
-$handler->display->display_options['filters']['field_discipline_value']['operator'] = 'contains';
-$handler->display->display_options['filters']['field_discipline_value']['exposed'] = TRUE;
-$handler->display->display_options['filters']['field_discipline_value']['expose']['operator_id'] = 'field_discipline_value_op';
-$handler->display->display_options['filters']['field_discipline_value']['expose']['label'] = 'Discipline';
-$handler->display->display_options['filters']['field_discipline_value']['expose']['operator'] = 'field_discipline_value_op';
-$handler->display->display_options['filters']['field_discipline_value']['expose']['identifier'] = 'field_discipline_value';
-$handler->display->display_options['filters']['field_discipline_value']['expose']['remember_roles'] = array(
-  2 => '2',
-  1 => 0,
-);
-/* Filter criterion: User: Country (field_country) */
-$handler->display->display_options['filters']['field_country_iso2']['id'] = 'field_country_iso2';
-$handler->display->display_options['filters']['field_country_iso2']['table'] = 'field_data_field_country';
-$handler->display->display_options['filters']['field_country_iso2']['field'] = 'field_country_iso2';
-$handler->display->display_options['filters']['field_country_iso2']['operator'] = 'contains';
-$handler->display->display_options['filters']['field_country_iso2']['exposed'] = TRUE;
-$handler->display->display_options['filters']['field_country_iso2']['expose']['operator_id'] = 'field_country_iso2_op';
-$handler->display->display_options['filters']['field_country_iso2']['expose']['label'] = 'Country';
-$handler->display->display_options['filters']['field_country_iso2']['expose']['operator'] = 'field_country_iso2_op';
-$handler->display->display_options['filters']['field_country_iso2']['expose']['identifier'] = 'field_country_iso2';
-$handler->display->display_options['filters']['field_country_iso2']['expose']['remember_roles'] = array(
-  2 => '2',
-  1 => 0,
-);
 $handler->display->display_options['path'] = 'signatories';
 $handler->display->display_options['menu']['type'] = 'normal';
 $handler->display->display_options['menu']['title'] = 'Signatories';
@@ -407,6 +354,12 @@ $handler->display->display_options['filters']['rid']['field'] = 'rid';
 $handler->display->display_options['filters']['rid']['value'] = array(
   3 => '3',
 );
+/* Filter criterion: User: The user ID */
+$handler->display->display_options['filters']['uid_raw']['id'] = 'uid_raw';
+$handler->display->display_options['filters']['uid_raw']['table'] = 'users';
+$handler->display->display_options['filters']['uid_raw']['field'] = 'uid_raw';
+$handler->display->display_options['filters']['uid_raw']['operator'] = '!=';
+$handler->display->display_options['filters']['uid_raw']['value']['value'] = '1';
 $handler->display->display_options['path'] = 'mentors';
 $handler->display->display_options['menu']['type'] = 'normal';
 $handler->display->display_options['menu']['title'] = 'Mentors';
@@ -444,6 +397,12 @@ $handler->display->display_options['filters']['field_notable_value']['field'] = 
 $handler->display->display_options['filters']['field_notable_value']['value'] = array(
   1 => '1',
 );
+/* Filter criterion: User: The user ID */
+$handler->display->display_options['filters']['uid_raw']['id'] = 'uid_raw';
+$handler->display->display_options['filters']['uid_raw']['table'] = 'users';
+$handler->display->display_options['filters']['uid_raw']['field'] = 'uid_raw';
+$handler->display->display_options['filters']['uid_raw']['operator'] = '!=';
+$handler->display->display_options['filters']['uid_raw']['value']['value'] = '1';
 
 return $view;
 }
