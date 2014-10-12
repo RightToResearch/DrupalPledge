@@ -90,6 +90,13 @@ function pledge_menu() {
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
+  $items['contact/%'] = array(
+    'title' => 'Contact',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('pledge_contact_site_form'),
+    'access arguments' => array('access site-wide contact form'),
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -102,8 +109,13 @@ function pledge_menu_alter(&$items) {
   $items['forum']['weight'] = 0;
   //Shift the support menu item to the main menu
   $items['support']['menu_name'] = 'main-menu';
+  //Change the access callback of user contact forms
   $items['user/%user/contact']['access callback'] = 'pledge_contact_callback';
   $items['user/%user/contact']['access arguments'] = array(1);
+}
+
+function pledge_menu_links_alter(&$item, $menu) {
+  print_r($items);exit;
 }
 
 function pledge_contact_callback($target_user) {
@@ -227,4 +239,12 @@ function pledge_user_view_alter(&$build) {
 function pledge_admin($form, &$form_state) {
   module_load_include('inc', 'pledge', 'forms');
   return system_settings_form(pledge_admin_form($form, $form_sate));
+}
+
+function pledge_contact_site_form($form, &$form_state) {
+  module_load_include('inc', 'contact', 'contact.pages');
+  $form = contact_site_form($form, $form_state);
+  //Change defualt category
+  $form['cid']['#default_value'] = arg(1);
+  return $form;
 }
