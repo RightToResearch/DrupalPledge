@@ -16,6 +16,7 @@ function pledge_user_fields() {
   $fields['field_institution'] = pledge_user_fields_institution();
   $fields['field_discipline'] = pledge_user_fields_discipline();
   $fields['field_country'] = pledge_user_fields_country();
+  $fields['field_notable'] = pledge_user_fields_notable();
   return $fields;
 }
 
@@ -123,6 +124,28 @@ function pledge_user_fields_country() {
       'weight' => 0,
       'module' => 'countries',
       'active' => 1,
+    ),
+  );
+  return $field;
+}
+
+function pledge_user_fields_notable() {
+  $field = array(
+    'field_name' => 'field_notable',
+    'type' => 'list_boolean',
+    'settings' => array(
+      'required' => 0,
+      'user_register_form' => 0,
+    ),
+    'label' => 'Notable',
+    'widget' => array(
+      'type' => 'options_onoff',
+      'weight' => 0,
+      'module' => 'options',
+      'active' => 1,
+      'settings' => array(
+              'display_label' => 1,
+      ),
     ),
   );
   return $field;

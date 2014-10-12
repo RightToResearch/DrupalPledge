@@ -12,6 +12,7 @@ dependencies[] = countryicons
 dependencies[] = countryicons_shiny
 dependencies[] = gravatar
 dependencies[] = context
+dependencies[] = list
 
 ;These dependencies are to facilitate easy testing, not needed on production site
 dependencies[] = views_ui

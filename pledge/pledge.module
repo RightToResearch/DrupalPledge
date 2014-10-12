@@ -189,6 +189,11 @@ function pledge_field_access($op, $field, $entity_type, $entity, $account) {
       return FALSE;
     }
   }
+  if ($entity_type == 'user' && $field['field_name'] == 'field_notable' && ($op == 'view' || $op == 'edit')) {
+    if (!in_array('Content Manager', $account->roles)) {
+      return FALSE;
+    }
+  }
   return TRUE;
 }
 
