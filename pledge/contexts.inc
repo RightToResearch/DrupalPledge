@@ -84,3 +84,37 @@ $context->reactions = array(
 $context->condition_mode = 0;
 return $context;
 }
+
+function pledge_contexts_support_pages() {
+$context = new stdClass();
+$context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+$context->api_version = 3;
+$context->name = 'support_pages';
+$context->description = '';
+$context->tag = '';
+$context->conditions = array(
+  'node' => array(
+    'values' => array(
+      'support_page' => 'support_page',
+    ),
+    'options' => array(
+      'node_form' => '0',
+    ),
+  ),
+);
+$context->reactions = array(
+  'block' => array(
+    'blocks' => array(
+      'pledge-read-pledge' => array(
+        'module' => 'pledge',
+        'delta' => 'read-pledge',
+        'region' => 'content',
+        'weight' => '1',
+      ),
+    ),
+  ),
+);
+$context->condition_mode = 0;
+
+return $context;
+}

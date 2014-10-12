@@ -42,6 +42,11 @@ function pledge_admin_form($form, &$form_state) {
 }
 
 function pledge_mark_as_read_form($form, &$form_state) {
+  $nid = arg(1); //Assumes this block is only called as defined in this module
+  $form['nid'] = array(
+    '#type' => 'hidden',
+    '#value' => $nid,
+  );
   $form['pledge_read'] = array(
     '#type' => 'submit',
     '#value' => 'Mark as read',
@@ -49,6 +54,17 @@ function pledge_mark_as_read_form($form, &$form_state) {
   return $form;
 }
 
-function pledge_mark_as_read_form_submit($form, &$form_sate) {
-  drupal_set_message('Read!');
+function pledge_mark_as_read_form_submit($form, &$form_state) {
+  global $user;
+  $record = array(
+    'uid' => $user->uid,
+    'type' => 'support_page',
+    'type_id' => $form_state['values']['nid'],
+  );
+  $result = db_query("SELECT COUNT(uid) FROM pledge_tasks WHERE type = 'support_page' AND uid = :uid AND type_id = :tid", array(':uid' => $user->uid, ':tid' => $form_state['values']['nid']));
+  if ($result->fetchCol()[0] > 0) {
+    ;
+  } else {
+    drupal_write_record('pledge_tasks', $record);
+  }
 }

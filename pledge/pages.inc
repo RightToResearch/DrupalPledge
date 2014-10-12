@@ -207,10 +207,32 @@ $display->panel_settings = array(
   ),
 );
 $display->cache = array();
-$display->title = variable_get('pledge_supporttitle', 'We\'re here to help...');
+$display->title = 'We\'re here to help...';
 $display->uuid = 'af7464e7-fdcd-4e0e-874b-754d4c1a4f3c';
 $display->content = array();
 $display->panels = array();
+  $pane = new stdClass();
+  $pane->pid = 'new-8ac8fdb3-342f-4170-aa92-cb9f010df37a';
+  $pane->panel = 'right_above';
+  $pane->type = 'block';
+  $pane->subtype = 'pledge-progress-pledge';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 0,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '8ac8fdb3-342f-4170-aa92-cb9f010df37a';
+  $display->content['new-8ac8fdb3-342f-4170-aa92-cb9f010df37a'] = $pane;
+  $display->panels['right_above'][0] = 'new-8ac8fdb3-342f-4170-aa92-cb9f010df37a';
 $display->hide_title = PANELS_TITLE_FIXED;
 $display->title_pane = '0';
 $handler->conf['display'] = $display;

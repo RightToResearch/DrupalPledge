@@ -59,6 +59,7 @@ function pledge_context_default_contexts() {
   $contexts = array();
   $contexts['support'] = pledge_contexts_support();
   $contexts['users'] = pledge_contexts_users();
+  $contexts['support-pages'] = pledge_contexts_support_pages();
   return $contexts;
 }
 

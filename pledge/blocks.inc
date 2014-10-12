@@ -40,7 +40,6 @@ function pledge_sign_pledge_block() {
  * For authenticated users thank them for signing the pledge and suggets what to do next (TODO)
  */
 function pledge_signed_block() {
-  module_load_include('install', 'pledge'); pledge_install_permissions(); drupal_set_message('changed', 'info');
   return variable_get('pledge_signed', 'Thanks for signing!');
 }
 
@@ -62,13 +61,18 @@ function pledge_progress_block() {
   pledge_progress_support_pages($progress);
 
   //Create output
-  $output = '';
+  $output = '<table>';
+  $tick_path = drupal_get_path('theme', 'seven') . '/images/task-check.png';
 
   foreach ($progress as $task => $status) {
-    $output .= $task . ' ';
-    $output .= $status ? 'DONE!' : 'To Do';
-    $output .= '<br />';
+    $output .= '<tr><td>';
+    $output .= $status 
+      ? "<img src='$tick_path' />" 
+      : '';
+    $output .= '</td><td>' . $task;
+    $output .= '</td></tr>';
   }
+  $output .= '</table>';
   return $output;
 }
 
@@ -100,7 +104,13 @@ function pledge_progress_support_pages(&$progress) {
 }
 
 function pledge_read_block() {
+  $nid = arg(1); //Assumes block is used only as specified in this modulw
+  global $user;
 
+  $result = db_query("SELECT COUNT(uid) FROM pledge_tasks WHERE type = 'support_page' AND uid = :uid AND type_id = :tid", array(':uid' => $user->uid, ':tid' => $nid));
+  if ($result->fetchCol()[0] > 0) {
+    return '';
+  }
   //If not previously read
   return drupal_get_form('pledge_mark_as_read_form');
 }
