@@ -136,6 +136,10 @@ function pledge_user_fields_notable() {
     'settings' => array(
       'required' => 0,
       'user_register_form' => 0,
+      'allowed_values' => array(
+        '0' => 'No',
+        '1' => 'Yes',
+      ),
     ),
     'label' => 'Notable',
     'widget' => array(

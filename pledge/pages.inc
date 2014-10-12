@@ -95,6 +95,28 @@ $display->panels = array();
   $display->content['new-b8f37d0c-a35e-4f8e-9c66-e476f25a79d9'] = $pane;
   $display->panels['bottom'][0] = 'new-b8f37d0c-a35e-4f8e-9c66-e476f25a79d9';
   $pane = new stdClass();
+  $pane->pid = 'new-4e4f69b1-7a4c-4b4c-9f9b-902e379af856';
+  $pane->panel = 'bottom';
+  $pane->type = 'block';
+  $pane->subtype = 'views-signatories-block_1';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 0,
+    'override_title_text' => '',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = '4e4f69b1-7a4c-4b4c-9f9b-902e379af856';
+  $display->content['new-4e4f69b1-7a4c-4b4c-9f9b-902e379af856'] = $pane;
+  $display->panels['bottom'][1] = 'new-4e4f69b1-7a4c-4b4c-9f9b-902e379af856';
+  $pane = new stdClass();
   $pane->pid = 'new-ee5e65bf-06d2-4ea9-8b91-511b0cc62f24';
   $pane->panel = 'left';
   $pane->type = 'block';
@@ -142,6 +164,7 @@ $display->hide_title = PANELS_TITLE_NONE;
 $display->title_pane = '0';
 $handler->conf['display'] = $display;
 $page->default_handlers[$handler->name] = $handler;
+
 return $page;
 }
 

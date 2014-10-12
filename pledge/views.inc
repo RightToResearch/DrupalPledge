@@ -85,8 +85,8 @@ $handler->display->display_options['filters']['status']['value'] = '1';
 $handler->display->display_options['filters']['status']['group'] = 1;
 $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
 
-/* Display: Page */
-$handler = $view->new_display('page', 'Page', 'page');
+/* Display: SignatoriesPage */
+$handler = $view->new_display('page', 'SignatoriesPage', 'page');
 $handler->display->display_options['defaults']['pager'] = FALSE;
 $handler->display->display_options['pager']['type'] = 'full';
 $handler->display->display_options['pager']['options']['items_per_page'] = '50';
@@ -215,8 +215,8 @@ $handler->display->display_options['menu']['type'] = 'normal';
 $handler->display->display_options['menu']['title'] = 'Signatories';
 $handler->display->display_options['menu']['name'] = 'main-menu';
 
-/* Display: Block */
-$handler = $view->new_display('block', 'Block', 'block');
+/* Display: RecentSignatoriesBlock */
+$handler = $view->new_display('block', 'RecentSignatoriesBlock', 'block');
 $handler->display->display_options['defaults']['title'] = FALSE;
 $handler->display->display_options['title'] = 'Recent Signatories';
 $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -414,6 +414,36 @@ $handler->display->display_options['menu']['weight'] = '0';
 $handler->display->display_options['menu']['name'] = 'main-menu';
 $handler->display->display_options['menu']['context'] = 0;
 $handler->display->display_options['menu']['context_only_inline'] = 0;
+
+/* Display: NotableSignatoriesBlock */
+$handler = $view->new_display('block', 'NotableSignatoriesBlock', 'block_1');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Notable Signatories';
+$handler->display->display_options['defaults']['pager'] = FALSE;
+$handler->display->display_options['pager']['type'] = 'some';
+$handler->display->display_options['pager']['options']['items_per_page'] = '0';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+/* Sort criterion: User: Created date */
+$handler->display->display_options['sorts']['created']['id'] = 'created';
+$handler->display->display_options['sorts']['created']['table'] = 'users';
+$handler->display->display_options['sorts']['created']['field'] = 'created';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filter criterion: User: Active */
+$handler->display->display_options['filters']['status']['id'] = 'status';
+$handler->display->display_options['filters']['status']['table'] = 'users';
+$handler->display->display_options['filters']['status']['field'] = 'status';
+$handler->display->display_options['filters']['status']['value'] = '1';
+$handler->display->display_options['filters']['status']['group'] = 1;
+$handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+/* Filter criterion: User: Notable (field_notable) */
+$handler->display->display_options['filters']['field_notable_value']['id'] = 'field_notable_value';
+$handler->display->display_options['filters']['field_notable_value']['table'] = 'field_data_field_notable';
+$handler->display->display_options['filters']['field_notable_value']['field'] = 'field_notable_value';
+$handler->display->display_options['filters']['field_notable_value']['value'] = array(
+  1 => '1',
+);
 
 return $view;
 }
