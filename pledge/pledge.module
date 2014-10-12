@@ -125,7 +125,9 @@ function pledge_block_info() {
   $blocks['read-pledge'] = array(
     'info' => t('Mark as read'),
   );
-
+  $blocks['here-to-help'] = array(
+    'info' => t('Here to Help'),
+  );
   return $blocks;
 }
 
@@ -164,6 +166,10 @@ function pledge_block_view($delta = '') {
       module_load_include('inc', 'pledge', 'forms');
       $block['subject'] = '';
       $block['content'] = pledge_read_block();
+      break;
+    case 'here-to-help':
+      $block['subject'] = '';
+      $block['content'] = pledge_here_to_help_block();
       break;
   }
   return $block;

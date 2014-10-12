@@ -43,6 +43,10 @@ function pledge_signed_block() {
   return variable_get('pledge_signed', 'Thanks for signing!');
 }
 
+function pledge_here_to_help_block() {
+  return variable_get('pledge_heretohelp', 'We have several ways of helping you!');
+}
+
 
 /**
  * As we hide the login block on <front> add a link in the header region

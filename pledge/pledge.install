@@ -17,6 +17,7 @@ function pledge_install() {
   variable_set('pledge_pledgetext', 'Visit the Pledge settings page to change your pledge text.');
   variable_set('pledge_signed', 'Thanks for signing!');
   variable_set('pledge_supporttitle', 'We\'re here to help...');
+  variable_set('pledge_heretohelp', 'We have several ways of helping you!');
 
   //Add fields to the user bundle
   pledge_install_user_fields();
@@ -115,6 +116,8 @@ function pledge_schema() {
     ),
     'primary key' => array(
       'uid',
+      'type',
+      'type_id',
     ),
   );
 
