@@ -39,7 +39,7 @@ function pledge_install() {
   pledge_install_permissions();
 
 
-  //Place the sign in block in the header region
+  //Place the new sign in block in the header region
   $block = array(
     'module' => 'pledge',
     'delta' => 'signin-pledge',
@@ -51,6 +51,8 @@ function pledge_install() {
     );
   drupal_write_record('block', $block);
 
+  //Hide the old sign in block
+  db_query("UPDATE block SET region = -1 WHERE module = 'user' AND delta = 'login';");
 
   //Enable user pictures so Gravatar integration works out of the box
   variable_set('user_pictures', 1);
