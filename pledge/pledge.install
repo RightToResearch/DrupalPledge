@@ -56,6 +56,9 @@ function pledge_install() {
 
   //Allow visitors to register their own accounts
   variable_set('user_register', 1);
+
+  //Enable the menu_link created by the contact module
+  db_query("UPDATE menu_links SET hidden = 0 WHERE menu_name = 'main-menu' AND link_path = 'contact';");
 }
 
 /**
