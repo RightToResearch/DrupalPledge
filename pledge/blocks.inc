@@ -134,9 +134,16 @@ function pledge_read_block() {
 }
 
 function pledge_ways_to_help_block() {
+  global $user;
+
+  $tick_path = drupal_get_path('theme', 'seven') . '/images/task-check.png';
+
   $output  = '<table>';
 
-  $output .= '<tr><td>' . l('Become a mentor', 'contact/2') . '</td></tr>';
+  $output .= '<tr><td>';
+  $output .= (in_array('Mentor', $user->roles)) ? "<img src='$tick_path' />" : '';
+  $output .= '</td><td>' . l('Become a mentor', 'contact/2') . '</td></tr>';
+
 
   $output .= '</table>';
 
