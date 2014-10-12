@@ -51,6 +51,7 @@ function pledge_install() {
     );
   drupal_write_record('block', $block);
 
+
   //Enable user pictures so Gravatar integration works out of the box
   variable_set('user_pictures', 1);
 
@@ -59,6 +60,16 @@ function pledge_install() {
 
   //Enable the menu_link created by the contact module
   db_query("UPDATE menu_links SET hidden = 0 WHERE menu_name = 'main-menu' AND link_path = 'contact';");
+
+  //Add 'Apply to be a mentor' to the contact form
+  $contact = array(
+   'category' => 'Apply to be a mentor',
+   'weight' => 1,
+   'selected' => 0,
+   'recipients' => variable_get('site_mail', 'pledge@pledge.invalid'),
+   'reply' => '',
+  );
+  drupal_write_record('contact', $contact);
 }
 
 /**
@@ -230,4 +241,9 @@ function pledge_install_user_fields_display() {
     $instance_info['display']['default']['type'] = 'hidden'; //hide the field
     field_update_instance($instance_info);
   }
+}
+
+function pledge_update_7004() {
+
+
 }
