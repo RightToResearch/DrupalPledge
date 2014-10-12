@@ -96,10 +96,12 @@ function pledge_progress_forum(&$progress) {
   global $user;
 
   $result = db_query("SELECT COUNT(nid) as count FROM node WHERE type = 'forum' AND uid = :uid;", array(':uid' => $user->uid));
-  $progress['Asked a question in the '.l('forum', 'forum')] = ($result->fetchCol()[0] > 0) ? TRUE : FALSE;
+  $result = $result->fetchCol();
+  $progress['Asked a question in the '.l('forum', 'forum')] = ($result[0] > 0) ? TRUE : FALSE;
 
   $result = db_query("SELECT COUNT(uid) FROM comment WHERE uid = :uid", array(':uid' => $user->uid));
-  $progress['Replied to a question in the '.l('forum', 'forum')] = ($result->fetchCol()[0] > 0) ? TRUE : FALSE;
+  $result = $result->fetchCol();
+  $progress['Replied to a question in the '.l('forum', 'forum')] = ($result[0] > 0) ? TRUE : FALSE;
 }
 
 function pledge_progress_support_pages(&$progress) {
@@ -123,7 +125,8 @@ function pledge_read_block() {
   global $user;
 
   $result = db_query("SELECT COUNT(uid) FROM pledge_tasks WHERE type = 'support_page' AND uid = :uid AND type_id = :tid", array(':uid' => $user->uid, ':tid' => $nid));
-  if ($result->fetchCol()[0] > 0) {
+  $result = $result->fetchCol();
+  if ($result[0] > 0) {
     return '';
   }
   //If not previously read
