@@ -19,6 +19,9 @@ function pledge_install() {
   variable_set('pledge_supporttitle', 'We\'re here to help...');
   variable_set('pledge_heretohelp', 'We have several ways of helping you!');
 
+  //Create Full HTML filter
+  pledge_install_filters();
+
   //Add fields to the user bundle
   pledge_install_user_fields();
 
@@ -28,9 +31,6 @@ function pledge_install() {
   //Create new node types
   pledge_install_node_types();
   variable_set('comment_support_page', 0);
-
-  //Create Full HTML filter
-  pledge_install_filters();
 
   //Create new roles
   pledge_install_roles();
@@ -81,11 +81,12 @@ function pledge_install_user_fields() {
   module_load_include('inc', 'pledge', 'user_fields');
   $fields = pledge_user_fields();
   foreach ($fields as $field) {
+   $field['settings']['text_processing'] = '1';
     if (!field_info_field($field['field_name'])) {
       $new = array(
         'field_name' => $field['field_name'],
         'type' => $field['type'],
-        'settings' => $field['settings']
+        'settings' => $field['settings'],
       );
     field_create_field($new);
     $instance = array(
@@ -97,6 +98,7 @@ function pledge_install_user_fields() {
         'widget' => $field['widget'],
         'settings' => array(
           'user_register_form' => $field['settings']['user_register_form'],
+          'text_processing' => (($field['type'] == 'text_long') ? '1' : '0'),
         ),
     );
     field_create_instance($instance);
