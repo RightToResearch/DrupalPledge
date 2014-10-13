@@ -238,7 +238,7 @@ function pledge_mentor_fields_about_me() {
     'field_name' => 'field_about_me',
     'type' => 'text_long',
     'settings' => array(
-      'text_processing' => '1',
+      'text_processing' => 1,
       'user_register_form' => 0,
     ),
     'label' => 'About Me',
