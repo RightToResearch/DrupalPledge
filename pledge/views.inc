@@ -557,6 +557,10 @@ $handler->display->display_options['fields']['field_institution']['label'] = '';
 $handler->display->display_options['fields']['field_institution']['alter']['alter_text'] = TRUE;
 $handler->display->display_options['fields']['field_institution']['alter']['text'] = '<strong>Institution:</strong> [field_institution]';
 $handler->display->display_options['fields']['field_institution']['element_label_colon'] = FALSE;
+/* Field: User: Website (Include http://) */
+$handler->display->display_options['fields']['field_website']['id'] = 'field_website';
+$handler->display->display_options['fields']['field_website']['table'] = 'field_data_field_website';
+$handler->display->display_options['fields']['field_website']['field'] = 'field_website';
 /* Contextual filter: User: Uid */
 $handler->display->display_options['arguments']['uid']['id'] = 'uid';
 $handler->display->display_options['arguments']['uid']['table'] = 'users';
@@ -585,7 +589,11 @@ $handler->display->display_options['style_options']['columns'] = array(
   'field_about_my_research' => 'field_about_me',
   'field_family_name' => 'picture',
   'field_given_name' => 'picture',
+  'field_website' => 'picture',
+  'field_twitter' => 'picture',
   'field_institution' => 'picture',
+  'field_career_stage' => 'picture',
+  'field_research_funding' => 'picture',
 );
 $handler->display->display_options['style_options']['default'] = '-1';
 $handler->display->display_options['style_options']['info'] = array(
@@ -624,7 +632,35 @@ $handler->display->display_options['style_options']['info'] = array(
     'separator' => '',
     'empty_column' => 0,
   ),
+  'field_website' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_twitter' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
   'field_institution' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_career_stage' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'field_research_funding' => array(
     'sortable' => 0,
     'default_sort_order' => 'asc',
     'align' => '',
@@ -635,6 +671,86 @@ $handler->display->display_options['style_options']['info'] = array(
 $handler->display->display_options['defaults']['style_options'] = FALSE;
 $handler->display->display_options['defaults']['row_plugin'] = FALSE;
 $handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Field: User: Picture */
+$handler->display->display_options['fields']['picture']['id'] = 'picture';
+$handler->display->display_options['fields']['picture']['table'] = 'users';
+$handler->display->display_options['fields']['picture']['field'] = 'picture';
+$handler->display->display_options['fields']['picture']['label'] = '';
+$handler->display->display_options['fields']['picture']['element_label_colon'] = FALSE;
+/* Field: User: About Me */
+$handler->display->display_options['fields']['field_about_me']['id'] = 'field_about_me';
+$handler->display->display_options['fields']['field_about_me']['table'] = 'field_data_field_about_me';
+$handler->display->display_options['fields']['field_about_me']['field'] = 'field_about_me';
+$handler->display->display_options['fields']['field_about_me']['label'] = '';
+$handler->display->display_options['fields']['field_about_me']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_about_me']['alter']['text'] = '<h2>About Me</h2>[field_about_me]';
+$handler->display->display_options['fields']['field_about_me']['element_label_colon'] = FALSE;
+$handler->display->display_options['fields']['field_about_me']['hide_alter_empty'] = FALSE;
+/* Field: User: About My Research */
+$handler->display->display_options['fields']['field_about_my_research']['id'] = 'field_about_my_research';
+$handler->display->display_options['fields']['field_about_my_research']['table'] = 'field_data_field_about_my_research';
+$handler->display->display_options['fields']['field_about_my_research']['field'] = 'field_about_my_research';
+$handler->display->display_options['fields']['field_about_my_research']['label'] = '';
+$handler->display->display_options['fields']['field_about_my_research']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_about_my_research']['alter']['text'] = '<h2>About My Research</h2>[field_about_my_research]';
+$handler->display->display_options['fields']['field_about_my_research']['element_label_colon'] = FALSE;
+/* Field: User: Family Name */
+$handler->display->display_options['fields']['field_family_name']['id'] = 'field_family_name';
+$handler->display->display_options['fields']['field_family_name']['table'] = 'field_data_field_family_name';
+$handler->display->display_options['fields']['field_family_name']['field'] = 'field_family_name';
+$handler->display->display_options['fields']['field_family_name']['label'] = '';
+$handler->display->display_options['fields']['field_family_name']['exclude'] = TRUE;
+$handler->display->display_options['fields']['field_family_name']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_family_name']['element_label_colon'] = FALSE;
+/* Field: User: Given Name(s) */
+$handler->display->display_options['fields']['field_given_name']['id'] = 'field_given_name';
+$handler->display->display_options['fields']['field_given_name']['table'] = 'field_data_field_given_name';
+$handler->display->display_options['fields']['field_given_name']['field'] = 'field_given_name';
+$handler->display->display_options['fields']['field_given_name']['label'] = '';
+$handler->display->display_options['fields']['field_given_name']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_given_name']['alter']['text'] = '<strong>Name:</strong> [field_given_name] [field_family_name]<br/>';
+$handler->display->display_options['fields']['field_given_name']['element_label_colon'] = FALSE;
+/* Field: User: Website (Include http://) */
+$handler->display->display_options['fields']['field_website']['id'] = 'field_website';
+$handler->display->display_options['fields']['field_website']['table'] = 'field_data_field_website';
+$handler->display->display_options['fields']['field_website']['field'] = 'field_website';
+$handler->display->display_options['fields']['field_website']['label'] = '';
+$handler->display->display_options['fields']['field_website']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_website']['alter']['text'] = '<strong>Website:</strong> <a href="[field_website]">[field_website]</a><br/>';
+$handler->display->display_options['fields']['field_website']['element_label_colon'] = FALSE;
+/* Field: User: Twitter username (without @) */
+$handler->display->display_options['fields']['field_twitter']['id'] = 'field_twitter';
+$handler->display->display_options['fields']['field_twitter']['table'] = 'field_data_field_twitter';
+$handler->display->display_options['fields']['field_twitter']['field'] = 'field_twitter';
+$handler->display->display_options['fields']['field_twitter']['label'] = '';
+$handler->display->display_options['fields']['field_twitter']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_twitter']['alter']['text'] = '<strong>Twitter:</strong> <a href="http://twitter.com/[field_twitter]">[field_twitter]</a><br/>';
+$handler->display->display_options['fields']['field_twitter']['element_label_colon'] = FALSE;
+/* Field: User: Institution */
+$handler->display->display_options['fields']['field_institution']['id'] = 'field_institution';
+$handler->display->display_options['fields']['field_institution']['table'] = 'field_data_field_institution';
+$handler->display->display_options['fields']['field_institution']['field'] = 'field_institution';
+$handler->display->display_options['fields']['field_institution']['label'] = '';
+$handler->display->display_options['fields']['field_institution']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_institution']['alter']['text'] = '<strong>Institution:</strong> [field_institution]<br/>';
+$handler->display->display_options['fields']['field_institution']['element_label_colon'] = FALSE;
+/* Field: User: Career Stage (e.g. PhD student, PostDoc) */
+$handler->display->display_options['fields']['field_career_stage']['id'] = 'field_career_stage';
+$handler->display->display_options['fields']['field_career_stage']['table'] = 'field_data_field_career_stage';
+$handler->display->display_options['fields']['field_career_stage']['field'] = 'field_career_stage';
+$handler->display->display_options['fields']['field_career_stage']['label'] = '';
+$handler->display->display_options['fields']['field_career_stage']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_career_stage']['alter']['text'] = '<strong>Career Stage:</strong> [field_career_stage]<br/>';
+$handler->display->display_options['fields']['field_career_stage']['element_label_colon'] = FALSE;
+/* Field: User: Research Funding (e.g. NERC, EU) */
+$handler->display->display_options['fields']['field_research_funding']['id'] = 'field_research_funding';
+$handler->display->display_options['fields']['field_research_funding']['table'] = 'field_data_field_research_funding';
+$handler->display->display_options['fields']['field_research_funding']['field'] = 'field_research_funding';
+$handler->display->display_options['fields']['field_research_funding']['label'] = '';
+$handler->display->display_options['fields']['field_research_funding']['alter']['alter_text'] = TRUE;
+$handler->display->display_options['fields']['field_research_funding']['alter']['text'] = '<strong>Research Funding:</strong> [field_research_funding]<br/>';
+$handler->display->display_options['fields']['field_research_funding']['element_label_colon'] = FALSE;
 
 /* Display: User Page 2 */
 $handler = $view->new_display('block', 'User Page 2', 'block_1');
@@ -695,5 +811,6 @@ $handler->display->display_options['fields']['field_tips_institute']['table'] = 
 $handler->display->display_options['fields']['field_tips_institute']['field'] = 'field_tips_institute';
 $handler->display->display_options['fields']['field_tips_institute']['alter']['alter_text'] = TRUE;
 $handler->display->display_options['fields']['field_tips_institute']['alter']['text'] = '<h2>My tips for researchers at my institute</h2>[field_tips_institute]';
+
 return $view;
 }

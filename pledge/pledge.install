@@ -244,8 +244,3 @@ function pledge_install_user_fields_display() {
     field_update_instance($instance_info);
   }
 }
-
-function pledge_update_7004() {
-
-
-}

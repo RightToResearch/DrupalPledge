@@ -17,6 +17,10 @@ function pledge_user_fields() {
   $fields['field_discipline'] = pledge_user_fields_discipline();
   $fields['field_country'] = pledge_user_fields_country();
   $fields['field_notable'] = pledge_user_fields_notable();
+  $fields['field_twitter'] = pledge_user_fields_twitter();
+  $fields['field_website'] = pledge_user_fields_website();
+  $fields['field_career_stage'] = pledge_user_fields_career_stage();
+  $fields['field_research_funding'] = pledge_user_fields_research_funding();
   return $fields;
 }
 
@@ -100,6 +104,80 @@ function pledge_user_fields_discipline() {
       'user_register_form' => 1,
     ),
     'label' => 'Discipline',
+    'widget' => array(
+      'type' => 'text_textfield',
+      'weight' => 0,
+      'module' => 'text',
+      'active' => 1,
+    ),
+  );
+  return $field;
+}
+
+function pledge_user_fields_twitter() {
+  $field = array(
+    'field_name' => 'field_twitter',
+    'type' => 'text',
+    'settings' => array(
+      'required' => 0,
+      'user_register_form' => 0,
+    ),
+    'label' => 'Twitter username (without @)',
+    'widget' => array(
+      'type' => 'text_textfield',
+      'weight' => 0,
+      'module' => 'text',
+      'active' => 1,
+    ),
+  );
+  return $field;
+}
+
+function pledge_user_fields_website() {
+  $field = array(
+    'field_name' => 'field_website',
+    'type' => 'text',
+    'settings' => array(
+      'required' => 0,
+      'user_register_form' => 0,
+    ),
+    'label' => 'Website (Include http://)',
+    'widget' => array(
+      'type' => 'text_textfield',
+      'weight' => 0,
+      'module' => 'text',
+      'active' => 1,
+    ),
+  );
+  return $field;
+}
+function pledge_user_fields_career_stage() {
+  $field = array(
+    'field_name' => 'field_career_stage',
+    'type' => 'text',
+    'settings' => array(
+      'required' => 0,
+      'user_register_form' => 0,
+    ),
+    'label' => 'Career Stage (e.g. PhD student, PostDoc)',
+    'widget' => array(
+      'type' => 'text_textfield',
+      'weight' => 0,
+      'module' => 'text',
+      'active' => 1,
+    ),
+  );
+  return $field;
+}
+function pledge_user_fields_research_funding() {
+  $field = array(
+    'field_name' => 'field_research_funding',
+    'type' => 'text',
+    'settings' => array(
+      'required' => 0,
+      'user_register_form' => 0,
+    ),
+    'label' => 'Research Funding (e.g. NERC, EU)',
     'widget' => array(
       'type' => 'text_textfield',
       'weight' => 0,
