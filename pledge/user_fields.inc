@@ -87,7 +87,7 @@ function pledge_user_fields_institution() {
     'label' => 'Institution',
     'widget' => array(
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 2,
       'module' => 'text',
       'active' => 1,
     ),
@@ -106,7 +106,7 @@ function pledge_user_fields_discipline() {
     'label' => 'Discipline',
     'widget' => array(
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 3,
       'module' => 'text',
       'active' => 1,
     ),
@@ -125,7 +125,7 @@ function pledge_user_fields_twitter() {
     'label' => 'Twitter username (without @)',
     'widget' => array(
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 5,
       'module' => 'text',
       'active' => 1,
     ),
@@ -144,7 +144,7 @@ function pledge_user_fields_website() {
     'label' => 'Website (Include http://)',
     'widget' => array(
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 4,
       'module' => 'text',
       'active' => 1,
     ),
@@ -162,7 +162,7 @@ function pledge_user_fields_career_stage() {
     'label' => 'Career Stage (e.g. PhD student, PostDoc)',
     'widget' => array(
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 6,
       'module' => 'text',
       'active' => 1,
     ),
@@ -180,7 +180,7 @@ function pledge_user_fields_research_funding() {
     'label' => 'Research Funding (e.g. NERC, EU)',
     'widget' => array(
       'type' => 'text_textfield',
-      'weight' => 0,
+      'weight' => 7,
       'module' => 'text',
       'active' => 1,
     ),
@@ -199,7 +199,7 @@ function pledge_user_fields_country() {
     'label' => 'Country',
     'widget' => array(
       'type' => 'options_select',
-      'weight' => 0,
+      'weight' => 1,
       'module' => 'countries',
       'active' => 1,
     ),
@@ -222,7 +222,7 @@ function pledge_user_fields_notable() {
     'label' => 'Notable',
     'widget' => array(
       'type' => 'options_onoff',
-      'weight' => 0,
+      'weight' => 50,
       'module' => 'options',
       'active' => 1,
       'settings' => array(
@@ -244,7 +244,7 @@ function pledge_mentor_fields_about_me() {
     'label' => 'About Me',
     'widget' => array(
       'type' => 'text_textarea',
-      'weight' => 0,
+      'weight' => 21,
       'module' => 'text',
       'active' => 1,
       'settings' => array(
@@ -266,7 +266,7 @@ function pledge_mentor_fields_about_my_research() {
     'label' => 'About My Research',
     'widget' => array(
       'type' => 'text_textarea',
-      'weight' => 0,
+      'weight' => 22,
       'module' => 'text',
       'active' => 1,
       'settings' => array(
@@ -288,7 +288,7 @@ function pledge_mentor_fields_favourites() {
     'label' => 'My favourite OA journal(s) / repositories',
     'widget' => array(
       'type' => 'text_textarea',
-      'weight' => 0,
+      'weight' => 23,
       'module' => 'text',
       'active' => 1,
       'settings' => array(
@@ -310,7 +310,7 @@ function pledge_mentor_fields_tips_area() {
     'label' => 'My tips for researchers in the same subject area',
     'widget' => array(
       'type' => 'text_textarea',
-      'weight' => 0,
+      'weight' => 24,
       'module' => 'text',
       'active' => 1,
       'settings' => array(
@@ -332,7 +332,7 @@ function pledge_mentor_fields_tips_institute() {
     'label' => 'My tips for researchers at my institute',
     'widget' => array(
       'type' => 'text_textarea',
-      'weight' => 0,
+      'weight' => 25,
       'module' => 'text',
       'active' => 1,
       'settings' => array(
